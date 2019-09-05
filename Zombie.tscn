@@ -41,9 +41,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="SpatialMaterial" id=4]
-flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
 
 [node name="Zombie" type="KinematicBody"]
 script = ExtResource( 1 )
