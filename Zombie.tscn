@@ -65,4 +65,3 @@ material_override = SubResource( 4 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 5
-frame = 9
