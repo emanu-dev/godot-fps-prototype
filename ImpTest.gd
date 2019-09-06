@@ -56,15 +56,15 @@ func _physics_process(delta):
 		
 	var vec_to_player = player.translation - translation
 	vec_to_player = vec_to_player.normalized()
-	raycast.cast_to = vec_to_player * 1.5
+	raycast.cast_to = (vec_to_player * 1.5)
 	
-	self.look_at(player.translation, Vector3(0,1,0))
+	self.look_at(player.translation - vec_to_player, Vector3(0,1,0))
 	
 	move_and_collide(vec_to_player * MOVE_SPEED * delta)
 	
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
-		if coll != null and coll.name == "Player":
+		if coll != null and coll == player:
 			coll.kill()
 	
 func kill():

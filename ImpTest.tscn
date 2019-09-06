@@ -47,7 +47,7 @@ params_alpha_scissor_threshold = 0.98
 
 [node name="ImpTest" type="KinematicBody"]
 script = ExtResource( 1 )
-anim_col = 8
+anim_col = 1
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -55,6 +55,7 @@ shape = SubResource( 1 )
 
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true
+cast_to = Vector3( 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 7 )
