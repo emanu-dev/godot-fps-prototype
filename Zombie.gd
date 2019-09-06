@@ -6,6 +6,7 @@ onready var raycast = $RayCast
 onready var anim_player = $AnimationPlayer
 
 var player = null
+var camera = null
 var dead = false
 
 func _ready():
@@ -36,3 +37,6 @@ func kill():
 		
 func set_player(p):
 	player = p
+
+func set_camera(c):
+	camera = c 

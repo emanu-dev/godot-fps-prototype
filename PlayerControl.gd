@@ -11,7 +11,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # Get mouse stuck on center
 	yield(get_tree(), "idle_frame") # Wait one frame
 	get_tree().call_group("zombies", "set_player", self) # set the player on all enemies
-	get_tree().call_group("Imps", "set_camera", camera) # set the camera on all imps
+	get_tree().call_group("zombies", "set_camera", camera) # set the camera on all imps
 
 func _input(event):
 	if event is InputEventMouseMotion:

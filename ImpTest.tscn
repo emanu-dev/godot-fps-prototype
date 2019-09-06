@@ -1,9 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ImpTest.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TestImp.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="Animation" id=7]
+resource_name = "die"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anim_col")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8 ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "walk"
@@ -29,10 +45,9 @@ params_billboard_mode = 2
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 
-[node name="ImpTest" type="KinematicBody" groups=[
-"Imps",
-]]
+[node name="ImpTest" type="KinematicBody"]
 script = ExtResource( 1 )
+anim_col = 8
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -42,7 +57,7 @@ shape = SubResource( 1 )
 enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "walk"
+anims/die = SubResource( 7 )
 anims/walk = SubResource( 6 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -50,4 +65,4 @@ transform = Transform( 0.981539, 0, 0, 0, 0.981539, 0, 0, 0, 0.981539, 0, 0, 0 )
 material_override = SubResource( 5 )
 texture = ExtResource( 2 )
 vframes = 5
-hframes = 4
+hframes = 9

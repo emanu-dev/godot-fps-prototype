@@ -17,12 +17,13 @@ var dead = false
 
 func _ready():
 	anim_player.play("walk")
+	add_to_group("zombies")
 
 func _process(delta):
 	if camera == null:
 		return
 		
-	var p_fwd = -camera.global_transform.basis.z
+	var p_fwd = camera.global_transform.basis.z
 	var fwd = global_transform.basis.z
 	var left = global_transform.basis.x
 	
@@ -57,7 +58,9 @@ func _physics_process(delta):
 	vec_to_player = vec_to_player.normalized()
 	raycast.cast_to = vec_to_player * 1.5
 	
-	# move_and_collide(vec_to_player * MOVE_SPEED * delta)
+	self.look_at(player.translation, Vector3(0,1,0))
+	
+	move_and_collide(vec_to_player * MOVE_SPEED * delta)
 	
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
@@ -67,7 +70,7 @@ func _physics_process(delta):
 func kill():
 	dead = true
 	$CollisionShape.disabled = true
-	# anim_player.play("die")
+	anim_player.play("die")
 		
 func set_player(p):
 	player = p
