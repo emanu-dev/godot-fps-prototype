@@ -11,16 +11,16 @@
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14807, 0, -7.66908 )
 
 [node name="ImpTest2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.61987, 0, -5.52913 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85193, 0, -7.66908 )
 
 [node name="ImpTest3" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34264, 0, -4.70319 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85193, 0, -5.66908 )
 
 [node name="ImpTest4" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.90895, -9.53674e-07, -6.07996 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14807, 0, -5.66908 )
 
 [node name="ImpTest5" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84601, -1.90735e-06, -7.12036 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85193, 0, -3.66908 )
 
 [node name="ImpTest6" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6838, -9.53674e-07, -3.66102 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.14807, 0, -3.66908 )

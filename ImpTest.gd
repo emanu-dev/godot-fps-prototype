@@ -23,8 +23,8 @@ func _process(delta):
 	if camera == null:
 		return
 		
-	var p_fwd = camera.global_transform.basis.z
-	var fwd = global_transform.basis.z
+	var p_fwd = -camera.global_transform.basis.z
+	var fwd = -global_transform.basis.z # Godot uses OpenGL convention for its transforms, so looking forward means looking at the negative Z axis
 	var left = global_transform.basis.x
 	
 	var l_dot = left.dot(p_fwd)
@@ -37,7 +37,7 @@ func _process(delta):
 	elif f_dot > 0.85:
 		row = 4 # back sprite
 	else: 
-		sprite.flip_h = l_dot > 0
+		sprite.flip_h = l_dot < 0 # Inverted because of negative z-axis
 		if abs(f_dot) < 0.3:
 			row = 2 # left sprite
 		elif f_dot < 0:
@@ -56,11 +56,15 @@ func _physics_process(delta):
 		
 	var vec_to_player = player.translation - translation
 	vec_to_player = vec_to_player.normalized()
-	raycast.cast_to = (vec_to_player * 1.5)
+	raycast.cast_to = (-vec_to_player * 1.5) # Inverted because of negative z-axis
 	
-	self.look_at(player.translation - vec_to_player, Vector3(0,1,0))
+	#self.look_at(player.translation - vec_to_player, Vector3(0,1,0))
 	
 	move_and_collide(vec_to_player * MOVE_SPEED * delta)
+	look_at(player.translation, Vector3(0, 1, 0))
+	#rotate_y(deg2rad(1.0))
+	
+	#print(rotation_degrees)
 	
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
