@@ -1,0 +1,18 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/simple_skybox/Skybox.gd" type="Script" id=1]
+[ext_resource path="res://Skyboxes/rip_ft.tga" type="Texture" id=2]
+[ext_resource path="res://Skyboxes/rip_bk.tga" type="Texture" id=3]
+[ext_resource path="res://Skyboxes/rip_dn.tga" type="Texture" id=4]
+[ext_resource path="res://Skyboxes/rip_up.tga" type="Texture" id=5]
+[ext_resource path="res://Skyboxes/rip_lf.tga" type="Texture" id=6]
+[ext_resource path="res://Skyboxes/rip_rt.tga" type="Texture" id=7]
+
+[node name="Skybox" type="Spatial"]
+script = ExtResource( 1 )
+TextureFront = ExtResource( 2 )
+TextureBack = ExtResource( 3 )
+TextureBottom = ExtResource( 4 )
+TextureUp = ExtResource( 5 )
+TextureLeft = ExtResource( 6 )
+TextureRight = ExtResource( 7 )
