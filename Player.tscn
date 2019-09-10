@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Gun.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Reticule.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -65,3 +66,6 @@ margin_right = 24.0
 margin_bottom = 24.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource( 4 )
