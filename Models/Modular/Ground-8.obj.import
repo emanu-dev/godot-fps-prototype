@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Ground-8.obj-e8db71db990b4bd5d33e05ab1c7390be.mesh"
+
+[deps]
+
+files=[ "res://.import/Ground-8.obj-e8db71db990b4bd5d33e05ab1c7390be.mesh" ]
+
+source_file="res://Models/Modular/Ground-8.obj"
+dest_files=[ "res://.import/Ground-8.obj-e8db71db990b4bd5d33e05ab1c7390be.mesh", "res://.import/Ground-8.obj-e8db71db990b4bd5d33e05ab1c7390be.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
