@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ImpTest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level.meshlib" type="MeshLibrary" id=3]
+[ext_resource path="res://Skyboxes/rip_ft.tga" type="Texture" id=4]
+
+[sub_resource type="PanoramaSky" id=3]
+panorama = ExtResource( 4 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 3 )
+ambient_light_energy = 0.82
+fog_enabled = true
+fog_color = Color( 0, 0, 0, 0.905882 )
+fog_depth_begin = 1.0
+fog_depth_end = 6.0
+fog_height_max = -163.7
 
 [node name="World" type="Spatial"]
 
@@ -37,3 +51,6 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 2, 0 )
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
