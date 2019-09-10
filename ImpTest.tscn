@@ -58,7 +58,7 @@ shape = SubResource( 1 )
 
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true
-cast_to = Vector3( 0, 0, 1 )
+cast_to = Vector3( 0, 0, -0.8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 2 )

@@ -56,8 +56,9 @@ func _physics_process(delta):
 		
 	var vec_to_player = player.translation - translation
 	vec_to_player = vec_to_player.normalized()
-	raycast.cast_to = (-vec_to_player * 1.5) # Inverted because of negative z-axis
-	
+	#raycast.cast_to = (-vec_to_player * 1.5) # Inverted because of negative z-axis
+	#raycast.cast_to = Vector3(player.translation.x,0,player.translation.z)
+
 	#self.look_at(player.translation - vec_to_player, Vector3(0,1,0))
 	
 	move_and_collide(vec_to_player * MOVE_SPEED * delta)
