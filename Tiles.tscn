@@ -4,7 +4,6 @@
 [ext_resource path="res://Models/Textures/ground.png" type="Texture" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
-flags_unshaded = true
 albedo_texture = ExtResource( 1 )
 uv1_scale = Vector3( 2, 2, 2 )
 
@@ -15,7 +14,6 @@ material = SubResource( 1 )
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
 [sub_resource type="SpatialMaterial" id=4]
-flags_unshaded = true
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="PlaneMesh" id=5]
