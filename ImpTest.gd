@@ -8,6 +8,8 @@ func set_camera(c):
 
 const MOVE_SPEED = 3
 
+var foundPlayer = false
+
 onready var raycast = $RayCast
 onready var anim_player = $AnimationPlayer
 onready var sprite = $Sprite3D
@@ -61,8 +63,9 @@ func _physics_process(delta):
 
 	#self.look_at(player.translation - vec_to_player, Vector3(0,1,0))
 	
-	move_and_collide(vec_to_player * MOVE_SPEED * delta)
-	look_at(player.translation, Vector3(0, 1, 0))
+	if foundPlayer:
+		move_and_collide(vec_to_player * MOVE_SPEED * delta)
+		look_at(player.translation, Vector3(0, 1, 0))
 	#rotate_y(deg2rad(1.0))
 	
 	#print(rotation_degrees)
@@ -79,3 +82,10 @@ func kill():
 		
 func set_player(p):
 	player = p
+
+func _on_Area_body_entered(body):
+	if body == player:
+		$AudioStreamPlayer.play()
+		$Area/CollisionShape.disabled = true;
+		print ("Entered")
+		foundPlayer = true
