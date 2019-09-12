@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ImpTest.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TestMutant.png" type="Texture" id=2]
 [ext_resource path="res://SFX/groan.wav" type="AudioStream" id=3]
+[ext_resource path="res://States.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.603997
@@ -81,4 +82,9 @@ shape = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Signals" type="Node" parent="."]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

@@ -25,6 +25,42 @@ func _process(delta):
 	if camera == null:
 		return
 		
+	var row = _check_sprite_direction (camera)
+	sprite.frame = anim_col + row * sprite.hframes
+
+	
+func _physics_process(delta):
+	if dead:
+		return
+	if player == null:
+		return
+		
+	if foundPlayer:
+		_follow_target(player, delta)
+	
+	if raycast.is_colliding():
+		var coll = raycast.get_collider()
+		if coll != null and coll == player:
+			coll.kill()
+	
+func kill():
+	dead = true
+	$CollisionShape.disabled = true
+	$Area.monitoring = false
+	anim_player.play("die")
+		
+func set_player(p):
+	player = p
+
+func _on_Area_body_entered(body):
+	if body == player:
+		$AudioStreamPlayer.play()
+		$Area/CollisionShape.disabled = true;
+		print ("Entered")
+		foundPlayer = true
+
+
+func _check_sprite_direction (camera):
 	var p_fwd = -camera.global_transform.basis.z
 	var fwd = -global_transform.basis.z # Godot uses OpenGL convention for its transforms, so looking forward means looking at the negative Z axis
 	var left = global_transform.basis.x
@@ -46,46 +82,12 @@ func _process(delta):
 			row = 1 # forward left sprite
 		else:
 			row = 3 # back left sprite
-	
-	sprite.frame = anim_col + row * sprite.hframes
-	
-	
-func _physics_process(delta):
-	if dead:
-		return
-	if player == null:
-		return
-		
-	var vec_to_player = player.translation - translation
-	vec_to_player = vec_to_player.normalized()
-	#raycast.cast_to = (-vec_to_player * 1.5) # Inverted because of negative z-axis
-	#raycast.cast_to = Vector3(player.translation.x,0,player.translation.z)
 
-	#self.look_at(player.translation - vec_to_player, Vector3(0,1,0))
+	return row	
 	
-	if foundPlayer:
-		move_and_collide(vec_to_player * MOVE_SPEED * delta)
-		look_at(player.translation, Vector3(0, 1, 0))
-	#rotate_y(deg2rad(1.0))
+func _follow_target (target, delta):
+	var vec_to_target = target.translation - translation
+	vec_to_target = vec_to_target.normalized()
 	
-	#print(rotation_degrees)
-	
-	if raycast.is_colliding():
-		var coll = raycast.get_collider()
-		if coll != null and coll == player:
-			coll.kill()
-	
-func kill():
-	dead = true
-	$CollisionShape.disabled = true
-	anim_player.play("die")
-		
-func set_player(p):
-	player = p
-
-func _on_Area_body_entered(body):
-	if body == player:
-		$AudioStreamPlayer.play()
-		$Area/CollisionShape.disabled = true;
-		print ("Entered")
-		foundPlayer = true
+	look_at(target.translation, Vector3(0, 1, 0))
+	move_and_collide(vec_to_target * MOVE_SPEED * delta)
