@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PlayerControl.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Gun.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Weapon/pistol-pixelator.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Reticule.png" type="Texture" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://SFX/shot-handgun.wav" type="AudioStream" id=5]
@@ -25,6 +25,40 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 0 ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "still"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Control/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -65 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walking"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Control/Sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -65 ), Vector2( -20, -75 ), Vector2( 0, -65 ), Vector2( 20, -75 ), Vector2( 0, -65 ) ]
+}
+
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -42,8 +76,11 @@ cast_to = Vector3( 0, 0, -2000 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shoot = SubResource( 2 )
 
+[node name="BobbingPlayer" type="AnimationPlayer" parent="."]
+anims/still = SubResource( 4 )
+anims/walking = SubResource( 3 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -52,8 +89,8 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/Control"]
-position = Vector2( 50, -64.1812 )
-scale = Vector2( 0.250616, 0.250616 )
+position = Vector2( 0, -65 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 hframes = 4
 

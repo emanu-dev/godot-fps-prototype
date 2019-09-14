@@ -4,6 +4,7 @@ const MOVE_SPEED = 5
 const MOUSE_SENS = 0.5
 
 onready var anim_player = $AnimationPlayer
+onready var bobbing_player = $BobbingPlayer
 onready var raycast = $RayCast
 onready var camera = $Camera
 
@@ -37,6 +38,11 @@ func _physics_process(delta):
 	move_vec = move_vec.normalized()
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_and_collide(move_vec * MOVE_SPEED * delta)
+	
+	if move_vec != Vector3(0,0,0) && !anim_player.is_playing():
+		bobbing_player.play("walking")
+	else:
+		bobbing_player.play("still")
 	
 	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
 		anim_player.play("shoot")
