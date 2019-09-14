@@ -29,8 +29,9 @@ func _ready():
 func _process(delta):
 	if camera == null:
 		return
-		
-	_check_fov()
+	
+	if !dead:
+		_check_fov()
 	
 	var row = _check_sprite_direction (camera)
 	sprite.frame = anim_col + row * sprite.hframes
