@@ -1,12 +1,16 @@
 extends KinematicBody
 
 export var anim_col = 0
+signal target_entered
+signal target_exited
 
 var camera = null
 func set_camera(c):
 	camera = c 
 
 const MOVE_SPEED = 3
+const DETECT_RADIUS = 20
+const DETECT_FOV = 20
 
 var foundPlayer = false
 
@@ -26,6 +30,8 @@ func _process(delta):
 	if camera == null:
 		return
 		
+	_check_fov()
+	
 	var row = _check_sprite_direction (camera)
 	sprite.frame = anim_col + row * sprite.hframes
 
@@ -54,12 +60,7 @@ func set_player(p):
 	player = p
 
 func _on_Area_body_entered(body):
-	if body == player:
-		$AudioStreamPlayer.play()
-		$Area/CollisionShape.disabled = true;
-		print ("Entered")
-		foundPlayer = true
-
+	pass
 
 func _check_sprite_direction (camera):
 	var p_fwd = -camera.global_transform.basis.z
@@ -85,6 +86,18 @@ func _check_sprite_direction (camera):
 			row = 3 # back left sprite
 
 	return row	
+
+func _check_fov():
+	var distance_to_player = self.translation.distance_to(player.translation)
+	if abs(distance_to_player) < DETECT_RADIUS:
+		var space_state = get_world().direct_space_state
+		var result = space_state.intersect_ray(self.translation, player.translation, [self], collision_mask)
+		if result:
+			var angle_on_fov = rad2deg(self.translation.angle_to(result.collider.translation))
+			if result.collider == player && angle_on_fov < DETECT_FOV && !foundPlayer:
+				emit_signal("target_entered")
+	else:
+		emit_signal("target_exited")	
 	
 func _follow_target (target, delta):
 	var vec_to_target = target.translation - translation
@@ -92,3 +105,8 @@ func _follow_target (target, delta):
 	
 	look_at(target.translation, Vector3(0, 1, 0))
 	move_and_collide(vec_to_target * MOVE_SPEED * delta)
+
+func _on_ImpTest_target_entered():
+	$AudioStreamPlayer.play()
+	$Area/CollisionShape.disabled = true;
+	foundPlayer = true
