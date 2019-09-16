@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Weapon/pistol-pixelator.png" type="Texture" id=2]
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "still"
 length = 0.1
 loop = true
@@ -42,8 +42,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -65 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walking"
+[sub_resource type="Animation" id=4]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -58,6 +57,28 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, -65 ), Vector2( -20, -75 ), Vector2( 0, -65 ), Vector2( 20, -75 ), Vector2( 0, -65 ) ]
 }
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "still"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/still/node = SubResource( 5 )
+states/still/position = Vector2( 138, 130 )
+states/walking/node = SubResource( 6 )
+states/walking/position = Vector2( 409, 130 )
+transitions = [ "still", "walking", SubResource( 7 ), "walking", "still", SubResource( 8 ) ]
+graph_offset = Vector2( -5.69838, 0 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -77,10 +98,17 @@ cast_to = Vector3( 0, 0, -2000 )
 anims/shoot = SubResource( 2 )
 
 [node name="BobbingPlayer" type="AnimationPlayer" parent="."]
-anims/still = SubResource( 4 )
-anims/walking = SubResource( 3 )
+anims/still = SubResource( 3 )
+anims/walking = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../BobbingPlayer")
+active = true
+parameters/playback = SubResource( 10 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_left = 0.5
