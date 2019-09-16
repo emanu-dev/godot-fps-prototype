@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const MOVE_SPEED = 5
+const MOVE_SPEED = 8
 const MOUSE_SENS = 0.5
 
 onready var anim_player = $AnimationPlayer
