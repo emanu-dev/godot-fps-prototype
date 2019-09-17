@@ -23,15 +23,12 @@ func _input(event):
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
 		
 func _process(delta):
-
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_pressed("restart"):
 		kill()
-
 	
 	if move_vec != Vector3(0,0,0) && !anim_player.is_playing():
-		print("hooray")
 		state_machine.travel("walking")
 	else:
 		state_machine.travel("still")		
@@ -54,6 +51,7 @@ func _physics_process(delta):
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
 	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
+		state_machine.travel("still")
 		anim_player.play("shoot")
 		$AudioStreamPlayer.play()
 		var coll = raycast.get_collider()

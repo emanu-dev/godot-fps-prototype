@@ -93,4 +93,3 @@ script = ExtResource( 4 )
 transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, -1 )
 texture = ExtResource( 5 )
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

@@ -11,20 +11,29 @@ func _ready():
 	call_deferred("set_state", states.idle)	
 
 func _state_logic(delta):
-	pass
-	# print (state)
+	if state == states.idle:
+		parent.check_fov()
+	if state == states.pursuit:
+		parent.follow_target(parent.player)
 
 #Transition conditions
 func _get_transition(delta):
 	match state:
 		states.idle:
+			if parent.foundPlayer:
+				return states.pursuit
+			if parent.dead:
+				return states.die
+		states.pursuit:
+			if parent.dead:
+				return states.die
 			pass	
 	return null
 	
 #Enter state conditions (mostly animations)
 func _enter_state(new_state, old_state):
 	match state:
-		states.idle:
+		states.die:
 			pass	
 	pass
 

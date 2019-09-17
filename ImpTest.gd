@@ -8,7 +8,7 @@ var camera = null
 func set_camera(c):
 	camera = c 
 
-const MOVE_SPEED = 3
+const MOVE_SPEED = 5
 const DETECT_RADIUS = 20
 const DETECT_FOV = 20
 
@@ -30,9 +30,6 @@ func _process(delta):
 	if camera == null:
 		return
 	
-	if !dead:
-		_check_fov()
-	
 	var row = _check_sprite_direction (camera)
 	sprite.frame = anim_col + row * sprite.hframes
 
@@ -42,9 +39,6 @@ func _physics_process(delta):
 		return
 	if player == null:
 		return
-		
-	if foundPlayer:
-		_follow_target(player, delta)
 	
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
@@ -59,9 +53,6 @@ func kill():
 		
 func set_player(p):
 	player = p
-
-func _on_Area_body_entered(body):
-	pass
 
 func _check_sprite_direction (camera):
 	var p_fwd = -camera.global_transform.basis.z
@@ -88,8 +79,11 @@ func _check_sprite_direction (camera):
 
 	return row	
 
-func _check_fov():
-	var distance_to_player = self.translation.distance_to(player.translation)
+func check_fov():
+	if player == null:
+		return
+	
+	var distance_to_player = _get_distance_from_target(player)
 	if abs(distance_to_player) < DETECT_RADIUS:
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(self.translation, player.translation, [self], collision_mask)
@@ -100,14 +94,17 @@ func _check_fov():
 	else:
 		emit_signal("target_exited")	
 	
-func _follow_target (target, delta):
+func follow_target (target):
 	var vec_to_target = target.translation - translation
 	vec_to_target = vec_to_target.normalized()
 	
 	look_at(target.translation, Vector3(0, 1, 0))
-	move_and_collide(vec_to_target * MOVE_SPEED * delta)
+	move_and_collide(vec_to_target * MOVE_SPEED * get_physics_process_delta_time () )
 
 func _on_ImpTest_target_entered():
 	$AudioStreamPlayer.play()
 	$Area/CollisionShape.disabled = true;
 	foundPlayer = true
+
+func _get_distance_from_target(target):
+	return self.translation.distance_to(target.translation)
