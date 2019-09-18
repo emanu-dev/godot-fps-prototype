@@ -1,18 +1,23 @@
 extends KinematicBody
 
-const MOVE_SPEED = 8
+const MOVE_SPEED = 10
 const MOUSE_SENS = 0.5
+
+signal health_update
 
 onready var anim_player = $AnimationPlayer
 onready var bobbing_player = $BobbingPlayer
 onready var raycast = $RayCast
 onready var camera = $Camera
 onready var state_machine = $AnimationTree.get("parameters/playback")
+onready var feedback_canvas = $FeedbackCanvas
 
 var move_vec
+var health = 100
 
 func _ready():
 	state_machine.start('still')
+	emit_signal("health_update", self)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # Get mouse stuck on center
 	yield(get_tree(), "idle_frame") # Wait one frame
 	get_tree().call_group("zombies", "set_player", self) # set the player on all enemies
@@ -21,6 +26,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
+		#rotation_degrees.x -= MOUSE_SENS * event.relative.y
 		
 func _process(delta):
 	if Input.is_action_pressed("exit"):
@@ -55,8 +61,18 @@ func _physics_process(delta):
 		anim_player.play("shoot")
 		$AudioStreamPlayer.play()
 		var coll = raycast.get_collider()
-		if raycast.is_colliding() and coll.has_method("kill"):
-			coll.kill()
-			
+		if raycast.is_colliding() and coll.has_method("hurt"):
+			coll.hurt(34)
+
+func hurt(dmg):
+	if health - dmg <= 0:
+		health = 0
+		kill()
+	else:
+		health -= dmg
+	
+	feedback_canvas.feedback_hurt()
+	emit_signal("health_update", self)
+
 func kill():
 	get_tree().reload_current_scene()

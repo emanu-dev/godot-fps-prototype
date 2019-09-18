@@ -15,6 +15,8 @@ func _state_logic(delta):
 		parent.check_fov()
 	if state == states.pursuit:
 		parent.follow_target(parent.player)
+	if state == states.hurt:
+		parent.hurt
 
 #Transition conditions
 func _get_transition(delta):
@@ -24,21 +26,33 @@ func _get_transition(delta):
 				return states.pursuit
 			if parent.dead:
 				return states.die
+			if parent.hurt == true:
+				return states.hurt
 		states.pursuit:
 			if parent.dead:
 				return states.die
-			pass	
+			if parent.hurt == true:
+				return states.hurt
+		states.hurt:
+			if !parent.hurt:
+				return states.pursuit
 	return null
 	
 #Enter state conditions (mostly animations)
 func _enter_state(new_state, old_state):
 	match state:
+		states.idle:
+			parent.anim_player.play("walk")
+		states.pursuit:
+			parent.anim_player.play("walk")
 		states.die:
-			pass	
+			parent.anim_player.play("die")
+		states.hurt:
+			parent.anim_player.play("hurt")
 	pass
 
 func _exit_state(old_state, new_state):
 	match state:
-		states.idle:
-			pass	
+		states.hurt:
+			pass
 	pass

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ImpTest.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/TestMutant.png" type="Texture" id=2]
 [ext_resource path="res://SFX/groan.wav" type="AudioStream" id=3]
 [ext_resource path="res://States.gd" type="Script" id=4]
-[ext_resource path="res://icon-front.png" type="Texture" id=5]
+[ext_resource path="res://Signals.gd" type="Script" id=5]
+[ext_resource path="res://icon-front.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.603997
@@ -24,6 +25,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "hurt"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anim_col")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 10 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -55,7 +73,7 @@ radius = 5.0
 
 [node name="ImpTest" type="KinematicBody"]
 script = ExtResource( 1 )
-anim_col = 1
+anim_col = 10
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -67,13 +85,14 @@ cast_to = Vector3( 0, 0, -0.8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/die = SubResource( 2 )
+anims/hurt = SubResource( 6 )
 anims/walk = SubResource( 3 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 material_override = SubResource( 4 )
 texture = ExtResource( 2 )
 vframes = 5
-hframes = 9
+hframes = 11
 
 [node name="Area" type="Area" parent="."]
 editor/display_folded = true
@@ -88,8 +107,10 @@ stream = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="Signals" type="Node" parent="."]
+script = ExtResource( 5 )
 
 [node name="DirectionPlaceholder" type="Sprite3D" parent="."]
 transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, -1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Signals" method="_on_AnimationPlayer_animation_finished"]

@@ -1,36 +1,20 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://PlayerControl.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Weapon/pistol-pixelator.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Reticule.png" type="Texture" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://FeedbackCanvas.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Weapon/pistol-pixelator.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Reticule.png" type="Texture" id=4]
 [ext_resource path="res://SFX/shot-handgun.wav" type="AudioStream" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
-
-[sub_resource type="Animation" id=2]
-resource_name = "shoot"
-length = 0.6
-step = 0.15
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/Control/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 0 ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "still"
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/Control/Sprite:position")
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -46,7 +30,7 @@ tracks/0/keys = {
 length = 1.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/Control/Sprite:position")
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -80,6 +64,23 @@ graph_offset = Vector2( -5.69838, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
+[sub_resource type="Animation" id=2]
+resource_name = "shoot"
+length = 0.6
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0 ]
+}
+
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -89,13 +90,6 @@ far = 200.0
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
-
-[node name="RayCast" type="RayCast" parent="."]
-enabled = true
-cast_to = Vector3( 0, 0, -2000 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/shoot = SubResource( 2 )
 
 [node name="BobbingPlayer" type="AnimationPlayer" parent="."]
 anims/still = SubResource( 3 )
@@ -107,22 +101,60 @@ anim_player = NodePath("../BobbingPlayer")
 active = true
 parameters/playback = SubResource( 10 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="FeedbackCanvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="FeedbackTimer" type="Timer" parent="FeedbackCanvas"]
+
+[node name="HurtColorRect" type="ColorRect" parent="FeedbackCanvas"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+color = Color( 0.784314, 0.0784314, 0.0784314, 0.392157 )
+
+[node name="RecoverColorRect" type="ColorRect" parent="FeedbackCanvas"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+color = Color( 0.133333, 0.784314, 0.0784314, 0.392157 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0, -2000 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shoot = SubResource( 2 )
+
+[node name="WeaponCanvas" type="CanvasLayer" parent="."]
 editor/display_folded = true
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="WeaponCanvas"]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Control"]
+[node name="WeaponSprite" type="Sprite" parent="WeaponCanvas/Control"]
 position = Vector2( 0, -65 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 hframes = 4
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="WeaponCanvas"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -133,10 +165,10 @@ margin_top = -8.0
 margin_right = 24.0
 margin_bottom = 24.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="Placeholder" type="Sprite3D" parent="."]
+texture = ExtResource( 6 )

@@ -20,9 +20,11 @@ onready var sprite = $Sprite3D
 
 var player = null
 var dead = false
+var hurt = false
+
+var health = 100
 
 func _ready():
-	anim_player.play("walk")
 	add_to_group("zombies")
 	$DirectionPlaceholder.visible = false
 
@@ -43,14 +45,21 @@ func _physics_process(delta):
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
 		if coll != null and coll == player:
-			coll.kill()
+			coll.hurt(2)
 	
 func kill():
 	dead = true
 	$CollisionShape.disabled = true
 	$Area.monitoring = false
-	anim_player.play("die")
-		
+
+func hurt(dmg):
+	if health - dmg <= 0:
+		health = 0
+		kill()
+	else:
+		hurt = true
+		health -= dmg
+
 func set_player(p):
 	player = p
 
