@@ -8,6 +8,8 @@ var camera = null
 func set_camera(c):
 	camera = c 
 
+var sfx_groan = load("res://SFX/groan.wav")
+
 const MOVE_SPEED = 5
 const DETECT_RADIUS = 20
 const DETECT_FOV = 20
@@ -17,6 +19,7 @@ var foundPlayer = false
 onready var raycast = $RayCast
 onready var anim_player = $AnimationPlayer
 onready var sprite = $Sprite3D
+onready var audio_stream = $AudioStreamPlayer3D
 
 var player = null
 var dead = false
@@ -111,9 +114,11 @@ func follow_target (target):
 	move_and_collide(vec_to_target * MOVE_SPEED * get_physics_process_delta_time () )
 
 func _on_ImpTest_target_entered():
-	$AudioStreamPlayer.play()
 	$Area/CollisionShape.disabled = true;
 	foundPlayer = true
+
+func sound_play_groan(audio_stream):
+	audio_stream.play_found()
 
 func _get_distance_from_target(target):
 	return self.translation.distance_to(target.translation)

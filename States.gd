@@ -40,19 +40,19 @@ func _get_transition(delta):
 	
 #Enter state conditions (mostly animations)
 func _enter_state(new_state, old_state):
-	match state:
+	match new_state:
 		states.idle:
 			parent.anim_player.play("walk")
 		states.pursuit:
 			parent.anim_player.play("walk")
 		states.die:
 			parent.anim_player.play("die")
+			parent.audio_stream.play_die()
 		states.hurt:
+			parent.audio_stream.play_shot()
 			parent.anim_player.play("hurt")
-	pass
 
 func _exit_state(old_state, new_state):
-	match state:
-		states.hurt:
-			pass
-	pass
+	match old_state:
+		states.idle:
+			parent.audio_stream.play_found()

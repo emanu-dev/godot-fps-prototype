@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/monster-shot-1.wav-81c04cf62fc5e2bf86b8bf6caf2e34b6.sample"
+
+[deps]
+
+source_file="res://SFX/monsters/monster-shot-1.wav"
+dest_files=[ "res://.import/monster-shot-1.wav-81c04cf62fc5e2bf86b8bf6caf2e34b6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/monster-shot-3.wav-ad966f08a7297a228388f39e3a0a1487.sample"
+
+[deps]
+
+source_file="res://SFX/monsters/monster-shot-3.wav"
+dest_files=[ "res://.import/monster-shot-3.wav-ad966f08a7297a228388f39e3a0a1487.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
