@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://FeedbackCanvas.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/Reticule.png" type="Texture" id=4]
 [ext_resource path="res://SFX/shot-handgun.wav" type="AudioStream" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Weapon.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -138,10 +139,8 @@ cast_to = Vector3( 0, 0, -2000 )
 anims/shoot = SubResource( 10 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -171,3 +170,6 @@ stream = ExtResource( 5 )
 
 [node name="Placeholder" type="Sprite3D" parent="."]
 texture = ExtResource( 6 )
+
+[node name="Weapon" type="Node" parent="."]
+script = ExtResource( 7 )
