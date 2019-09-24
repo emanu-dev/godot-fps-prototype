@@ -8,10 +8,13 @@ extends MarginContainer
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_Player_health_update(player):
 	$HBoxContainer/VBoxContainer/LifeCounter.text = str(player.health) +  "%"
+	
+
+func _on_Player_weapon_change(name, ammo):
+	$HBoxContainer/VBoxContainer2/AmmoLabel.text = name
+	$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)
+	print(name)

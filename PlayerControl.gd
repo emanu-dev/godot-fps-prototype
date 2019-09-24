@@ -4,6 +4,7 @@ const MOVE_SPEED = 10
 const MOUSE_SENS = 0.5
 
 signal health_update
+signal weapon_change
 
 onready var anim_player = $AnimationPlayer
 onready var bobbing_player = $BobbingPlayer
@@ -22,6 +23,7 @@ func _ready():
 	yield(get_tree(), "idle_frame") # Wait one frame
 	get_tree().call_group("zombies", "set_player", self) # set the player on all enemies
 	get_tree().call_group("zombies", "set_camera", camera) # set the camera on all imps
+	$Weapon.call_deferred("set_current_weapon", 1)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -33,6 +35,14 @@ func _process(delta):
 		get_tree().quit()
 	if Input.is_action_pressed("restart"):
 		kill()
+	
+	if Input.is_action_just_released("switch_weapon_up"):
+		$Weapon.switch_weapon_down()
+		emit_signal("weapon_change", $Weapon.get_current_weapon().name, $Weapon.get_current_weapon().ammo)
+
+	if Input.is_action_just_released("switch_weapon_down"):
+		$Weapon.switch_weapon_up()
+		emit_signal("weapon_change", $Weapon.get_current_weapon().name, $Weapon.get_current_weapon().ammo)
 	
 	if move_vec != Vector3(0,0,0) && !anim_player.is_playing():
 		state_machine.travel("walking")
@@ -57,12 +67,13 @@ func _physics_process(delta):
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
 	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
-		state_machine.travel("still")
-		anim_player.play("shoot")
-		$AudioStreamPlayer.play()
-		var coll = raycast.get_collider()
-		if raycast.is_colliding() and coll.has_method("hurt"):
-			coll.hurt(34)
+		$Weapon.shoot_weapon()
+		#state_machine.travel("still")
+		#anim_player.play("shoot")
+		#$AudioStreamPlayer.play()
+		#var coll = raycast.get_collider()
+		#if raycast.is_colliding() and coll.has_method("hurt"):
+		#	coll.hurt(34)
 
 func hurt(dmg):
 	if health - dmg <= 0:
