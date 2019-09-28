@@ -5,6 +5,7 @@ const MOUSE_SENS = 0.5
 
 signal health_update
 signal weapon_change
+signal ammo_update
 
 onready var anim_player = $AnimationPlayer
 onready var bobbing_player = $BobbingPlayer
@@ -23,7 +24,6 @@ func _ready():
 	yield(get_tree(), "idle_frame") # Wait one frame
 	get_tree().call_group("zombies", "set_player", self) # set the player on all enemies
 	get_tree().call_group("zombies", "set_camera", camera) # set the camera on all imps
-	$Weapon.call_deferred("set_current_weapon", 1)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -37,18 +37,31 @@ func _process(delta):
 		kill()
 	
 	if Input.is_action_just_released("switch_weapon_up"):
-		$Weapon.switch_weapon_down()
-		emit_signal("weapon_change", $Weapon.get_current_weapon().name, $Weapon.get_current_weapon().ammo)
+		if !$Weapon.is_switching_weapon():
+			$Weapon.set_switching_weapon(true)
+			$Weapon.switch_weapon_down()
+			yield(get_tree().create_timer(.4), "timeout")	
+			$Weapon.set_switching_weapon(false)
 
 	if Input.is_action_just_released("switch_weapon_down"):
-		$Weapon.switch_weapon_up()
-		emit_signal("weapon_change", $Weapon.get_current_weapon().name, $Weapon.get_current_weapon().ammo)
+		if !$Weapon.is_switching_weapon():
+			$Weapon.set_switching_weapon(true)
+			$Weapon.switch_weapon_up()
+			yield(get_tree().create_timer(.4), "timeout")	
+			$Weapon.set_switching_weapon(false)
 	
-	if move_vec != Vector3(0,0,0) && !anim_player.is_playing():
+	if move_vec != Vector3(0,0,0) && !anim_player.is_playing() && !$Weapon.is_switching_weapon():
 		state_machine.travel("walking")
+	elif $Weapon.is_switching_weapon():
+		if state_machine.get_current_node() == "up_weapon":
+			$Weapon.weapon_sprite.visible = true
+		else:
+			$Weapon.weapon_sprite.visible = false
+			state_machine.travel("up_weapon")
 	else:
-		state_machine.travel("still")		
+		state_machine.travel("still")
 		
+	print($Weapon.is_switching_weapon())
 		
 func _physics_process(delta):
 	move_vec = Vector3()	
@@ -67,13 +80,8 @@ func _physics_process(delta):
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
 	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
-		$Weapon.shoot_weapon()
-		#state_machine.travel("still")
-		#anim_player.play("shoot")
-		#$AudioStreamPlayer.play()
-		#var coll = raycast.get_collider()
-		#if raycast.is_colliding() and coll.has_method("hurt"):
-		#	coll.hurt(34)
+		if !$Weapon.is_switching_weapon():
+			$Weapon.shoot_weapon()
 
 func hurt(dmg):
 	if health - dmg <= 0:

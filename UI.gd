@@ -13,8 +13,9 @@ func _ready():
 func _on_Player_health_update(player):
 	$HBoxContainer/VBoxContainer/LifeCounter.text = str(player.health) +  "%"
 	
-
 func _on_Player_weapon_change(name, ammo):
 	$HBoxContainer/VBoxContainer2/AmmoLabel.text = name
 	$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)
-	print(name)
+
+func _on_Player_ammo_update(ammo):
+	$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)

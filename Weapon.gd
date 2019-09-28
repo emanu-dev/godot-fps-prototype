@@ -8,14 +8,16 @@ onready var weapon_canvas = get_parent().get_node("WeaponCanvas")
 onready var weapon_sprite = get_parent().get_node("WeaponCanvas/Control/WeaponSprite")
 onready var audio_stream = get_parent().get_node("AudioStreamPlayer")
 
-var weapon_inv = [{}]
+var weapon_inv = []
 var current_weapon setget set_current_weapon, get_current_weapon
+var switching_weapon = false setget set_switching_weapon, is_switching_weapon
 var current_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	weapon_inv.append({ "name" : "Pistol",
 	"texture": load("res://Sprites/Weapon/pistol-pixelator.png"),
+	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"frames": {"h": 4, "v": 1},
 	"shotrange": -2000,
 	"damage": 34,
@@ -23,7 +25,8 @@ func _ready():
 	"ammo": 25 })
 	
 	weapon_inv.append({ "name" : "Machine Gun",
-	"texture": load("res://Sprites/Weapon/pistol-pixelator.png"),
+	"texture": load("res://Sprites/Weapon/smg-pixelator.png"),
+	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"frames": {"h": 4, "v": 1},
 	"shotrange": -2000,
 	"damage": 10,
@@ -31,30 +34,37 @@ func _ready():
 	"ammo": 350 })	
 
 	weapon_inv.append({ "name" : "Shotgun",
-	"texture": load("res://Sprites/Weapon/pistol-pixelator.png"),
+	"texture": load("res://Sprites/Weapon/shotgun-pixelator.png"),
+	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"frames": {"h": 4, "v": 1},
 	"shotrange": -2000,
 	"damage": 50,
 	"max_ammo": 8,
 	"ammo": 8 })
 	
+	state_machine.start("up_weapon")
+	call_deferred("set_current_weapon", 0)
+	
 func set_current_weapon(index):
+	#weapon_sprite.visible = false
 	current_weapon = weapon_inv[index]
-	update_weapon_parameters(current_weapon)
+	update_weapon_parameters(current_weapon)	
+	get_parent().emit_signal("weapon_change", get_current_weapon().name, get_current_weapon().ammo)
+	
 	
 func get_current_weapon():
 	return current_weapon
 
 func switch_weapon_up():
 	if (current_index + 1) >= weapon_inv.size():
-		current_index = 1
+		current_index = 0
 	else:
 		current_index += 1
 	
 	set_current_weapon(current_index)
 
 func switch_weapon_down():
-	if (current_index - 1) <= 0:
+	if (current_index - 1) < 0:
 		current_index = weapon_inv.size() - 1
 	else:
 		current_index -= 1
@@ -69,9 +79,25 @@ func update_weapon_parameters(current_weapon):
 	raycast.cast_to = Vector3(0,0, current_weapon.shotrange)
 	
 func shoot_weapon():
-	state_machine.travel("still")
-	anim_player.play("shoot")
-	audio_stream.play()
-	var coll = raycast.get_collider()
-	if raycast.is_colliding() and coll.has_method("hurt"):
-		coll.hurt(current_weapon.damage)
+	if current_weapon.ammo > 0:
+		state_machine.travel("still")
+		anim_player.play("shoot")
+		audio_stream.play()
+		decrease_ammo(1)
+		var coll = raycast.get_collider()
+		if raycast.is_colliding() and coll.has_method("hurt"):
+			coll.hurt(current_weapon.damage)
+	
+func decrease_ammo(amount):
+	current_weapon.ammo -= amount
+	get_parent().emit_signal("ammo_update", current_weapon.ammo)
+	
+func increase_ammo(amount):
+	current_weapon.ammo += amount
+	get_parent().emit_signal("ammo_update", current_weapon.ammo)
+	
+func set_switching_weapon(switching):
+	switching_weapon = switching
+
+func is_switching_weapon():
+	return switching_weapon
