@@ -36,32 +36,33 @@ func _process(delta):
 	if Input.is_action_pressed("restart"):
 		kill()
 	
+	#FIX THIS DOWN BELOW -> KISS
 	if Input.is_action_just_released("switch_weapon_up"):
 		if !$Weapon.is_switching_weapon():
 			$Weapon.set_switching_weapon(true)
-			$Weapon.switch_weapon_down()
-			yield(get_tree().create_timer(.4), "timeout")	
+			state_machine.travel("down_weapon")
+			yield(get_tree().create_timer(.4), "timeout")
+			$Weapon.switch_weapon_up()
+			state_machine.travel("up_weapon")
+			yield(get_tree().create_timer(.4), "timeout")
 			$Weapon.set_switching_weapon(false)
 
 	if Input.is_action_just_released("switch_weapon_down"):
 		if !$Weapon.is_switching_weapon():
 			$Weapon.set_switching_weapon(true)
+			state_machine.travel("down_weapon")
+			yield(get_tree().create_timer(.4), "timeout")	
 			$Weapon.switch_weapon_up()
+			state_machine.travel("up_weapon")
 			yield(get_tree().create_timer(.4), "timeout")	
 			$Weapon.set_switching_weapon(false)
 	
 	if move_vec != Vector3(0,0,0) && !anim_player.is_playing() && !$Weapon.is_switching_weapon():
 		state_machine.travel("walking")
 	elif $Weapon.is_switching_weapon():
-		if state_machine.get_current_node() == "up_weapon":
-			$Weapon.weapon_sprite.visible = true
-		else:
-			$Weapon.weapon_sprite.visible = false
-			state_machine.travel("up_weapon")
+		pass
 	else:
 		state_machine.travel("still")
-		
-	print($Weapon.is_switching_weapon())
 		
 func _physics_process(delta):
 	move_vec = Vector3()	

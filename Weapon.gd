@@ -46,7 +46,6 @@ func _ready():
 	call_deferred("set_current_weapon", 0)
 	
 func set_current_weapon(index):
-	#weapon_sprite.visible = false
 	current_weapon = weapon_inv[index]
 	update_weapon_parameters(current_weapon)	
 	get_parent().emit_signal("weapon_change", get_current_weapon().name, get_current_weapon().ammo)
