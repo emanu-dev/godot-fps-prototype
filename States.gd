@@ -36,6 +36,8 @@ func _get_transition(delta):
 		states.hurt:
 			if !parent.hurt:
 				return states.pursuit
+			elif !parent.anim_player.is_playing():
+				return states.hurt
 	return null
 	
 #Enter state conditions (mostly animations)
@@ -49,6 +51,7 @@ func _enter_state(new_state, old_state):
 			parent.anim_player.play("die")
 			parent.audio_stream.play_die()
 		states.hurt:
+			parent.audio_stream.stop()
 			parent.audio_stream.play_shot()
 			parent.anim_player.play("hurt")
 
