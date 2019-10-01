@@ -16,7 +16,8 @@ func feedback_hurt():
 func feedback_recover():
 	if !recover_rect.visible:
 		recover_rect.visible = true
-		yield(timer.start(1), "timeout")
+		timer.start(1)
+		yield(timer, "timeout")
 		recover_rect.visible = false
 	else:
 		return

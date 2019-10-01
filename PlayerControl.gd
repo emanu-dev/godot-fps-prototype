@@ -24,6 +24,7 @@ func _ready():
 	yield(get_tree(), "idle_frame") # Wait one frame
 	get_tree().call_group("zombies", "set_player", self) # set the player on all enemies
 	get_tree().call_group("zombies", "set_camera", camera) # set the camera on all imps
+	get_tree().call_group("items", "set_player", self) # set the player on all enemies
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -52,7 +53,7 @@ func _process(delta):
 			$Weapon.set_switching_weapon(true)
 			state_machine.travel("down_weapon")
 			yield(get_tree().create_timer(.4), "timeout")	
-			$Weapon.switch_weapon_up()
+			$Weapon.switch_weapon_down()
 			state_machine.travel("up_weapon")
 			yield(get_tree().create_timer(.4), "timeout")	
 			$Weapon.set_switching_weapon(false)
@@ -80,7 +81,7 @@ func _physics_process(delta):
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
-	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
+	if Input.is_action_pressed("shoot") and $Weapon.can_shoot():
 		if !$Weapon.is_switching_weapon():
 			$Weapon.shoot_weapon()
 
@@ -96,3 +97,14 @@ func hurt(dmg):
 
 func kill():
 	get_tree().reload_current_scene()
+	
+func set_health(value):
+	health = value
+	emit_signal("health_update", self)
+	
+func get_health():
+	return health
+
+
+
+

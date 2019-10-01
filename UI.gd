@@ -8,8 +8,6 @@ extends MarginContainer
 func _ready():
 	pass # Replace with function body.
 
-
-
 func _on_Player_health_update(player):
 	$HBoxContainer/VBoxContainer/LifeCounter.text = str(player.health) +  "%"
 	

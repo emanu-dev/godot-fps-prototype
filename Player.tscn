@@ -74,49 +74,49 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -65 ), Vector2( -20, -75 ), Vector2( 0, -65 ), Vector2( 20, -75 ), Vector2( 0, -65 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "down_weapon"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "still"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "up_weapon"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 xfade_time = 0.25
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+xfade_time = 0.25
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachine" id=15]
-states/down_weapon/node = SubResource( 18 )
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/down_weapon/node = SubResource( 6 )
 states/down_weapon/position = Vector2( 262.302, 210.78 )
-states/still/node = SubResource( 6 )
+states/still/node = SubResource( 7 )
 states/still/position = Vector2( 138, 130 )
-states/up_weapon/node = SubResource( 7 )
+states/up_weapon/node = SubResource( 8 )
 states/up_weapon/position = Vector2( 262.302, 308 )
-states/walking/node = SubResource( 8 )
+states/walking/node = SubResource( 9 )
 states/walking/position = Vector2( 409, 130 )
-transitions = [ "still", "walking", SubResource( 9 ), "walking", "still", SubResource( 10 ), "up_weapon", "still", SubResource( 12 ), "up_weapon", "walking", SubResource( 14 ), "still", "down_weapon", SubResource( 19 ), "down_weapon", "up_weapon", SubResource( 20 ), "walking", "down_weapon", SubResource( 21 ) ]
+transitions = [ "still", "walking", SubResource( 10 ), "walking", "still", SubResource( 11 ), "up_weapon", "still", SubResource( 12 ), "up_weapon", "walking", SubResource( 13 ), "still", "down_weapon", SubResource( 14 ), "down_weapon", "up_weapon", SubResource( 15 ), "walking", "down_weapon", SubResource( 16 ) ]
 graph_offset = Vector2( -219.773, 110.78 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=19]
 length = 0.6
 step = 0.15
 tracks/0/type = "value"
@@ -149,10 +149,10 @@ anims/up_weapon = SubResource( 4 )
 anims/walking = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 15 )
+tree_root = SubResource( 17 )
 anim_player = NodePath("../BobbingPlayer")
 active = true
-parameters/playback = SubResource( 16 )
+parameters/playback = SubResource( 18 )
 
 [node name="FeedbackCanvas" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -189,9 +189,10 @@ enabled = true
 cast_to = Vector3( 0, 0, -2000 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/shoot = SubResource( 17 )
+anims/shoot = SubResource( 19 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
 anchor_left = 0.5
@@ -204,7 +205,6 @@ position = Vector2( 0, 32 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 hframes = 4
-frame = 3
 
 [node name="TextureRect" type="TextureRect" parent="WeaponCanvas"]
 visible = false

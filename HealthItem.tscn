@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://HealthItem.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_billboard_mode = 2
+params_billboard_keep_scale = true
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.482181
+height = 0.64562
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hover"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -16 ), Vector2( 0, 16 ), Vector2( 0, -16 ) ]
+}
+
+[node name="HealthItem" type="Sprite3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79111, 1.05191, 35.3554 )
+material_override = SubResource( 1 )
+offset = Vector2( 0, -3.43619 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="."]
+editor/display_folded = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hover = SubResource( 3 )
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
