@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Items/MedicKit.png" type="Texture" id=1]
 [ext_resource path="res://HealthItem.gd" type="Script" id=2]
+[ext_resource path="res://SFX/health-pickup.wav" type="AudioStream" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
+albedo_texture = ExtResource( 1 )
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.482181
@@ -37,11 +39,13 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Area" type="Area" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Hover = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

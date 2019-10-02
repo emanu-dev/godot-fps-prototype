@@ -13,10 +13,12 @@ var current_weapon setget set_current_weapon, get_current_weapon
 var switching_weapon = false setget set_switching_weapon, is_switching_weapon
 var current_index = 0
 var can_shoot = true setget set_can_shoot, can_shoot
+enum weapon_types {MELEE, PISTOL, SPREAD, RAPID}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	weapon_inv.append({ "name" : "Pistol",
+	weapon_inv.append({ "name" : "Handgun",
+	"type": weapon_types.PISTOL,
 	"texture": load("res://Sprites/Weapon/pistol-pixelator.png"),
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"frames": {"h": 4, "v": 1},
@@ -27,6 +29,7 @@ func _ready():
 	"ammo": 25 })
 	
 	weapon_inv.append({ "name" : "Machine Gun",
+	"type": weapon_types.RAPID,
 	"texture": load("res://Sprites/Weapon/smg-pixelator.png"),
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"frames": {"h": 4, "v": 1},
@@ -37,6 +40,7 @@ func _ready():
 	"ammo": 350 })	
 
 	weapon_inv.append({ "name" : "Shotgun",
+	"type": weapon_types.SPREAD,
 	"texture": load("res://Sprites/Weapon/shotgun-pixelator.png"),
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"frames": {"h": 4, "v": 1},
@@ -91,10 +95,8 @@ func shoot_weapon():
 		var coll = raycast.get_collider()
 		
 		if raycast.is_colliding() and coll.has_method("hurt"):
-			print (coll.health)
 			var distance = clamp(get_parent().translation.distance_to(coll.translation), 10, 40) - 10
 			coll.hurt(current_weapon.damage - distance)
-			print (coll.health)
 		
 		yield(get_tree().create_timer(current_weapon.rate), "timeout")	
 		set_can_shoot(true)
@@ -103,10 +105,20 @@ func decrease_ammo(amount):
 	current_weapon.ammo -= amount
 	get_parent().emit_signal("ammo_update", current_weapon.ammo)
 	
-func increase_ammo(amount):
-	current_weapon.ammo += amount
-	get_parent().emit_signal("ammo_update", current_weapon.ammo)
-	
+func increase_ammo(index, amount):
+	if weapon_inv[index].ammo < weapon_inv[index].max_ammo:
+		weapon_inv[index].ammo = min(weapon_inv[index].ammo + amount, weapon_inv[index].max_ammo)
+		get_parent().emit_signal("ammo_update", current_weapon.ammo)
+		return true
+	else:
+		return false
+
+func has_weapon_type(type):
+	for i in len(weapon_inv):
+		if weapon_inv[i].type == type:
+			return i
+	return null
+
 func set_switching_weapon(switching):
 	switching_weapon = switching
 
@@ -118,3 +130,9 @@ func set_can_shoot(flag):
 	
 func can_shoot():
 	return can_shoot
+	
+func get_weapon_types():
+	return weapon_types
+	
+func get_weapon_inv():
+	return weapon_inv

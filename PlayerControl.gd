@@ -105,6 +105,7 @@ func set_health(value):
 func get_health():
 	return health
 
-
+func get_weapon_system():
+	return $Weapon
 
 

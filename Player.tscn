@@ -172,6 +172,18 @@ margin_right = 160.0
 margin_bottom = 90.0
 color = Color( 0.784314, 0.0784314, 0.0784314, 0.392157 )
 
+[node name="AmmoColorRect" type="ColorRect" parent="FeedbackCanvas"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+color = Color( 0.0784314, 0.470588, 0.784314, 0.392157 )
+
 [node name="RecoverColorRect" type="ColorRect" parent="FeedbackCanvas"]
 visible = false
 anchor_left = 0.5
