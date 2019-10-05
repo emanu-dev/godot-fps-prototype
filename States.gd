@@ -8,6 +8,7 @@ func _ready():
 	add_state("pursuit")
 	add_state("hurt")
 	add_state("die")
+	add_state("taunt")
 	call_deferred("set_state", states.idle)	
 
 func _state_logic(delta):
@@ -17,13 +18,20 @@ func _state_logic(delta):
 		parent.follow_target(parent.player)
 	if state == states.hurt:
 		parent.hurt
+	if state == states.attack:
+		parent.raycast.enabled = true
+	else:
+		parent.raycast.enabled = false
 
 #Transition conditions
 func _get_transition(delta):
 	match state:
 		states.idle:
 			if parent.foundPlayer:
-				return states.pursuit
+				if _is_randomized(50, 100):
+					return states.taunt
+				else:
+					return states.pursuit
 			if parent.dead:
 				return states.die
 			if parent.hurt == true:
@@ -33,10 +41,31 @@ func _get_transition(delta):
 				return states.die
 			if parent.hurt == true:
 				return states.hurt
+			if parent._get_distance_from_target(parent.player) < parent.attack_range:
+				return states.attack				
 		states.hurt:
 			if !parent.hurt:
-				return states.pursuit
+				if _is_randomized(50, 100):
+					return states.taunt
+				else:
+					return states.pursuit
 			elif !parent.anim_player.is_playing():
+				return states.hurt
+			if parent.dead:
+				return states.die				
+		states.attack:
+			if parent._get_distance_from_target(parent.player) > parent.attack_range:
+				return states.pursuit
+			if parent.hurt == true:
+				return states.hurt
+			if parent.dead:
+				return states.die
+		states.taunt:
+			if !parent.anim_player.is_playing():
+				return states.pursuit
+			if parent.dead:
+				return states.die
+			if parent.hurt == true:
 				return states.hurt
 	return null
 	
@@ -54,8 +83,21 @@ func _enter_state(new_state, old_state):
 			parent.audio_stream.stop()
 			parent.audio_stream.play_shot()
 			parent.anim_player.play("hurt")
+		states.attack:
+			parent.anim_player.play("attack")
+		states.taunt:
+			parent.anim_player.play("taunt")
+			parent.audio_stream.play_die()
 
 func _exit_state(old_state, new_state):
 	match old_state:
 		states.idle:
 			parent.audio_stream.play_found()
+			
+func _is_randomized(odds, total_chances):
+	randomize()
+	var result = randi() % total_chances
+	if result < odds:
+		return true
+	else:
+		return false	

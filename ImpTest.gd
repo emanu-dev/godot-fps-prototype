@@ -26,10 +26,13 @@ var dead = false
 var hurt = false
 
 var health = 100
+export var attack_range = 1.8
+
 
 func _ready():
 	add_to_group("zombies")
 	$DirectionPlaceholder.visible = false
+	raycast.cast_to = Vector3(0, 0, -attack_range)
 
 func _process(delta):
 	if camera == null:
@@ -37,7 +40,6 @@ func _process(delta):
 	
 	var row = _check_sprite_direction (camera)
 	sprite.frame = anim_col + row * sprite.hframes
-
 	
 func _physics_process(delta):
 	if dead:
