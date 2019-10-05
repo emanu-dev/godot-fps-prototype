@@ -9,7 +9,7 @@ params_billboard_mode = 2
 params_billboard_keep_scale = true
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Sprite3D
 
 var player
@@ -57,12 +57,11 @@ func _on_Area_body_entered(body):
 			destroy()
 "
 
-[sub_resource type="CylinderShape" id=2]
+[sub_resource type="CylinderShape" id=3]
 radius = 0.482181
 height = 0.64562
 
-[sub_resource type="Animation" id=3]
-resource_name = "Hover"
+[sub_resource type="Animation" id=4]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -79,20 +78,21 @@ tracks/0/keys = {
 }
 
 [node name="HandgunAmmoItem" type="Sprite3D"]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79111, 1.05191, 35.3554 )
 material_override = SubResource( 1 )
 offset = Vector2( 0, -3.43619 )
 texture = ExtResource( 1 )
-script = SubResource( 4 )
+script = SubResource( 2 )
 ammo_type = 1
 
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hover = SubResource( 3 )
+anims/Hover = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
