@@ -91,7 +91,7 @@ func hurt(dmg):
 		kill()
 	else:
 		health -= dmg
-	
+
 	feedback_canvas.feedback_hurt()
 	emit_signal("health_update", self)
 

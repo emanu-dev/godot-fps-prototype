@@ -8,7 +8,7 @@ onready var timer = $FeedbackTimer
 func feedback_hurt():
 	if !hurt_rect.visible:
 		hurt_rect.visible = true
-		timer.start(1)
+		timer.start(.125)
 		yield(timer, "timeout")
 		hurt_rect.visible = false
 	else:
@@ -17,7 +17,7 @@ func feedback_hurt():
 func feedback_recover():
 	if !recover_rect.visible:
 		recover_rect.visible = true
-		timer.start(1)
+		timer.start(.125)
 		yield(timer, "timeout")
 		recover_rect.visible = false
 	else:
@@ -26,7 +26,7 @@ func feedback_recover():
 func feedback_ammo():
 	if !ammo_rect.visible:
 		ammo_rect.visible = true
-		timer.start(1)
+		timer.start(.125)
 		yield(timer, "timeout")
 		ammo_rect.visible = false
 	else:

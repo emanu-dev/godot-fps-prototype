@@ -58,6 +58,7 @@ func kill():
 	$Area.monitoring = false
 
 func hurt(dmg):
+	$Blood.burst()
 	if health - dmg <= 0:
 		health = 0
 		kill()
