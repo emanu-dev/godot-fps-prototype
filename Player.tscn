@@ -1,8 +1,8 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://PlayerControl.gd" type="Script" id=1]
 [ext_resource path="res://FeedbackCanvas.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Weapon/pistol-pixelator.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Weapon/weapons.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Reticule.png" type="Texture" id=4]
 [ext_resource path="res://SFX/shot-handgun.wav" type="AudioStream" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
@@ -117,8 +117,8 @@ graph_offset = Vector2( -219.773, 110.78 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
 [sub_resource type="Animation" id=19]
-length = 0.6
-step = 0.15
+resource_name = "bat"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
 tracks/0/interp = 1
@@ -126,10 +126,171 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 12, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WeaponCanvas/Control/WeaponSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.4, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WeaponCanvas/Control/WeaponSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -78.88, 70 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "bat-idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WeaponCanvas/Control/WeaponSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WeaponCanvas/Control/WeaponSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "handgun"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "handgun-idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "shotgun"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 0 ]
+"values": [ 5, 6, 7, 6, 8 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "shotgun-idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "smg"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10, 9 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "smg-idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
 }
 
 [node name="Player" type="KinematicBody"]
@@ -201,10 +362,16 @@ enabled = true
 cast_to = Vector3( 0, 0, -2000 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/shoot = SubResource( 19 )
+anims/bat = SubResource( 19 )
+anims/bat-idle = SubResource( 24 )
+anims/handgun = SubResource( 20 )
+anims/handgun-idle = SubResource( 23 )
+anims/shotgun = SubResource( 21 )
+anims/shotgun-idle = SubResource( 25 )
+anims/smg = SubResource( 22 )
+anims/smg-idle = SubResource( 26 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
 anchor_left = 0.5
@@ -213,10 +380,12 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 
 [node name="WeaponSprite" type="Sprite" parent="WeaponCanvas/Control"]
-position = Vector2( 0, 32 )
+position = Vector2( 0, -65 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
-hframes = 4
+vframes = 2
+hframes = 8
+frame = 9
 
 [node name="TextureRect" type="TextureRect" parent="WeaponCanvas"]
 visible = false

@@ -17,11 +17,20 @@ enum weapon_types {MELEE, PISTOL, SPREAD, RAPID}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	weapon_inv.append({ "name" : "Bat",
+	"type": weapon_types.MELEE,
+	"anim": "bat",
+	"shot_sfx": load("res://SFX/shot-handgun.wav"),
+	"shotrange": -5,
+	"rate": .6,
+	"damage": 25,
+	"max_ammo": 25,
+	"ammo": 25 })	
+	
 	weapon_inv.append({ "name" : "Handgun",
 	"type": weapon_types.PISTOL,
-	"texture": load("res://Sprites/Weapon/pistol-pixelator.png"),
+	"anim": "handgun",
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
-	"frames": {"h": 4, "v": 1},
 	"shotrange": -100,
 	"rate": .6,
 	"damage": 34,
@@ -30,9 +39,8 @@ func _ready():
 	
 	weapon_inv.append({ "name" : "Machine Gun",
 	"type": weapon_types.RAPID,
-	"texture": load("res://Sprites/Weapon/smg-pixelator.png"),
+	"anim": "smg",
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
-	"frames": {"h": 4, "v": 1},
 	"shotrange": -200,
 	"rate": .2,
 	"damage": 10,
@@ -41,10 +49,9 @@ func _ready():
 
 	weapon_inv.append({ "name" : "Shotgun",
 	"type": weapon_types.SPREAD,
-	"texture": load("res://Sprites/Weapon/shotgun-pixelator.png"),
+	"anim": "shotgun",
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
-	"frames": {"h": 4, "v": 1},
-	"shotrange": -50,
+	"shotrange": -25,
 	"rate": 1.6,
 	"damage": 50,
 	"max_ammo": 8,
@@ -57,6 +64,7 @@ func set_current_weapon(index):
 	current_weapon = weapon_inv[index]
 	update_weapon_parameters(current_weapon)	
 	get_parent().emit_signal("weapon_change", get_current_weapon().name, get_current_weapon().ammo)
+	anim_player.play(current_weapon["anim"] + "-idle")
 	
 	
 func get_current_weapon():
@@ -79,9 +87,6 @@ func switch_weapon_down():
 	set_current_weapon(current_index)
 
 func update_weapon_parameters(current_weapon):
-	weapon_sprite.texture = current_weapon.texture
-	weapon_sprite.hframes = current_weapon.frames.h
-	weapon_sprite.vframes = current_weapon.frames.v
 	
 	raycast.cast_to = Vector3(0,0, current_weapon.shotrange)
 	
@@ -89,14 +94,34 @@ func shoot_weapon():
 	if current_weapon.ammo > 0:
 		set_can_shoot(false)
 		state_machine.travel("still")
-		anim_player.play("shoot")
+		anim_player.play(current_weapon["anim"])
 		audio_stream.play()
 		decrease_ammo(1)
-		var coll = raycast.get_collider()
 		
-		if raycast.is_colliding() and coll.has_method("hurt"):
-			var distance = clamp(get_parent().translation.distance_to(coll.translation), 10, 40) - 10
-			coll.hurt(current_weapon.damage - distance)
+		if current_weapon["type"] == weapon_types.SPREAD:
+			var enemies = get_tree().get_nodes_in_group("zombies")
+			for enemy in enemies:
+				var distance = get_parent().translation.distance_to(enemy.translation)
+				if distance <= abs(current_weapon["shotrange"]):
+					var player = get_parent()
+					var a = player.get_transform().basis.z # Enemy's forward vector
+					var b = (player.get_translation() - enemy.get_translation()).normalized() # Vector from enemy to player
+	
+					if acos(a.dot(b)) <= deg2rad(45): # If the angle is less than or equal to 60 degrees
+						var space_state = player.get_world().direct_space_state
+						var ray = space_state.intersect_ray(player.get_translation(), enemy.translation, [self])
+						
+						if ray && ray.collider == enemy:
+							distance = clamp(distance, 10, -current_weapon["shotrange"]) - 10
+							print(current_weapon.damage - distance)
+							enemy.hurt(current_weapon.damage - distance)
+					
+		else:
+			var coll = raycast.get_collider()
+		
+			if raycast.is_colliding() and coll.has_method("hurt"):
+				var distance = clamp(get_parent().translation.distance_to(coll.translation), 10, 40) - 10
+				coll.hurt(current_weapon.damage - distance)
 		
 		yield(get_tree().create_timer(current_weapon.rate), "timeout")	
 		set_can_shoot(true)
