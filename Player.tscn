@@ -156,7 +156,7 @@ tracks/2/keys = {
 "values": [ Vector2( -78.88, 70 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=20]
 resource_name = "bat-idle"
 length = 0.1
 tracks/0/type = "value"
@@ -196,8 +196,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=20]
-resource_name = "handgun"
+[sub_resource type="Animation" id=21]
 length = 0.4
 step = 0.2
 tracks/0/type = "value"
@@ -213,7 +212,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 0 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=22]
 resource_name = "handgun-idle"
 length = 0.1
 tracks/0/type = "value"
@@ -229,8 +228,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=21]
-resource_name = "shotgun"
+[sub_resource type="Animation" id=23]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -245,7 +243,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 6, 8 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=24]
 resource_name = "shotgun-idle"
 length = 0.1
 tracks/0/type = "value"
@@ -261,8 +259,7 @@ tracks/0/keys = {
 "values": [ 8 ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "smg"
+[sub_resource type="Animation" id=25]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -363,15 +360,16 @@ cast_to = Vector3( 0, 0, -2000 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bat = SubResource( 19 )
-anims/bat-idle = SubResource( 24 )
-anims/handgun = SubResource( 20 )
-anims/handgun-idle = SubResource( 23 )
-anims/shotgun = SubResource( 21 )
-anims/shotgun-idle = SubResource( 25 )
-anims/smg = SubResource( 22 )
+anims/bat-idle = SubResource( 20 )
+anims/handgun = SubResource( 21 )
+anims/handgun-idle = SubResource( 22 )
+anims/shotgun = SubResource( 23 )
+anims/shotgun-idle = SubResource( 24 )
+anims/smg = SubResource( 25 )
 anims/smg-idle = SubResource( 26 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
 anchor_left = 0.5

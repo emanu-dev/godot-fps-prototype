@@ -51,7 +51,7 @@ func _ready():
 	"type": weapon_types.SPREAD,
 	"anim": "shotgun",
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
-	"shotrange": -25,
+	"shotrange": -15,
 	"rate": 1.6,
 	"damage": 50,
 	"max_ammo": 8,
@@ -91,6 +91,7 @@ func update_weapon_parameters(current_weapon):
 	raycast.cast_to = Vector3(0,0, current_weapon.shotrange)
 	
 func shoot_weapon():
+	
 	if current_weapon.ammo > 0:
 		set_can_shoot(false)
 		state_machine.travel("still")
@@ -98,30 +99,21 @@ func shoot_weapon():
 		audio_stream.play()
 		decrease_ammo(1)
 		
-		if current_weapon["type"] == weapon_types.SPREAD:
-			var enemies = get_tree().get_nodes_in_group("zombies")
-			for enemy in enemies:
-				var distance = get_parent().translation.distance_to(enemy.translation)
-				if distance <= abs(current_weapon["shotrange"]):
-					var player = get_parent()
-					var a = player.get_transform().basis.z # Enemy's forward vector
-					var b = (player.get_translation() - enemy.get_translation()).normalized() # Vector from enemy to player
-	
-					if acos(a.dot(b)) <= deg2rad(45): # If the angle is less than or equal to 60 degrees
-						var space_state = player.get_world().direct_space_state
-						var ray = space_state.intersect_ray(player.get_translation(), enemy.translation, [self])
-						
-						if ray && ray.collider == enemy:
-							distance = clamp(distance, 10, -current_weapon["shotrange"]) - 10
-							print(current_weapon.damage - distance)
-							enemy.hurt(current_weapon.damage - distance)
-					
-		else:
-			var coll = raycast.get_collider()
-		
-			if raycast.is_colliding() and coll.has_method("hurt"):
-				var distance = clamp(get_parent().translation.distance_to(coll.translation), 10, 40) - 10
-				coll.hurt(current_weapon.damage - distance)
+		var enemies_to_shoot
+		match current_weapon["type"]:
+			weapon_types.MELEE:
+				enemies_to_shoot = get_enemy_in_front(raycast, "zombies")
+				shoot_enemy(get_parent(), enemies_to_shoot, current_weapon["shotrange"], current_weapon["damage"])
+			weapon_types.PISTOL:
+				enemies_to_shoot = get_enemy_in_front(raycast, "zombies")
+				shoot_enemy(get_parent(), enemies_to_shoot, current_weapon["shotrange"], current_weapon["damage"])
+			weapon_types.SPREAD:
+				enemies_to_shoot = get_enemies_in_range("zombies", current_weapon["shotrange"], 25, get_parent(), 3)
+				for enemy in enemies_to_shoot:
+					shoot_enemy(get_parent(), enemy, current_weapon["shotrange"], current_weapon["damage"])
+			weapon_types.RAPID:
+				enemies_to_shoot = get_enemy_in_front(raycast, "zombies")
+				shoot_enemy(get_parent(), enemies_to_shoot, current_weapon["shotrange"], current_weapon["damage"])
 		
 		yield(get_tree().create_timer(current_weapon.rate), "timeout")	
 		set_can_shoot(true)
@@ -161,3 +153,59 @@ func get_weapon_types():
 	
 func get_weapon_inv():
 	return weapon_inv
+	
+func get_enemies_in_range(group, weapon_range, weapon_radius, player, total):
+	var enemy_array = []
+	var result_array = []
+	var i = 0
+	
+	#Get all enemies within weapon range
+	var enemies = get_tree().get_nodes_in_group(group)
+	for enemy in enemies:
+		var distance = player.translation.distance_to(enemy.translation)
+		if distance <= abs(weapon_range):
+			enemy_array.append([distance, enemy])
+	
+	enemy_array.sort_custom(self, "sortEnemiesByDist")
+	
+	#Sort the closest enemies
+	for sorted_enemy in enemy_array:
+		if i < total:
+			var a = player.get_transform().basis.z # Players's forward vector
+			var b = (player.get_translation() - sorted_enemy[1].get_translation()).normalized() # Vector from player to enemy
+		
+			if acos(a.dot(b)) <= deg2rad(weapon_radius): # If the angle is less than or equal to the radius
+				result_array.append(sorted_enemy[1])
+				i += 1
+			else:
+				result_array.append(sorted_enemy[1])
+				i += 1				
+
+	return result_array
+
+func get_enemy_in_front(raycast, group):
+	var enemy = raycast.get_collider()
+	
+	if raycast.is_colliding() and enemy.is_in_group(group):
+		return enemy
+	
+	return null
+	
+func shoot_enemy(player, enemy, weapon_range, damage):
+	if enemy == null:
+		return
+	else:
+		var distance = player.translation.distance_to(enemy.translation)
+		var space_state = player.get_world().direct_space_state
+		var ray = space_state.intersect_ray(player.get_translation(), enemy.translation, [self])					
+		
+		if ray && ray.collider == enemy:
+			distance = clamp(distance, 0, abs(weapon_range) * 1.5)
+			#print(current_weapon.damage - distance)
+			enemy.hurt(current_weapon.damage - distance)
+	
+	
+static func sortEnemiesByDist(a, b):
+    if a[0] < b[0]:
+        return true
+    return false
