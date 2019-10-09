@@ -11,8 +11,8 @@ func set_camera(c):
 var sfx_groan = load("res://SFX/groan.wav")
 
 const MOVE_SPEED = 5
-const DETECT_RADIUS = 20
-const DETECT_FOV = 20
+const DETECT_DISTANCE = 20
+const DETECT_FOV = 45
 
 var foundPlayer = false
 
@@ -99,13 +99,16 @@ func check_fov():
 		return
 	
 	var distance_to_player = _get_distance_from_target(player)
-	if abs(distance_to_player) < DETECT_RADIUS:
-		var space_state = get_world().direct_space_state
-		var result = space_state.intersect_ray(self.translation, player.translation, [self], collision_mask)
-		if result:
-			var angle_on_fov = rad2deg(self.translation.angle_to(result.collider.translation))
-			if result.collider == player && angle_on_fov < DETECT_FOV && !foundPlayer:
-				emit_signal("target_entered")
+	if abs(distance_to_player) < DETECT_DISTANCE:
+		var a = self.get_transform().basis.z # Self forward vector
+		var b = (self.get_translation() - player.get_translation()).normalized() # Vector from enemy to player
+		
+		if acos(a.dot(b)) <= deg2rad(DETECT_FOV):
+			var space_state = get_world().direct_space_state
+			var result = space_state.intersect_ray(self.translation, player.translation, [self], collision_mask)			
+			if result:
+				if result.collider == player && !foundPlayer:
+					emit_signal("target_entered")	
 	else:
 		emit_signal("target_exited")	
 	
