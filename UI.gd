@@ -13,7 +13,13 @@ func _on_Player_health_update(player):
 	
 func _on_Player_weapon_change(name, ammo):
 	$HBoxContainer/VBoxContainer2/AmmoLabel.text = name
-	$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)
+	if ammo > 0:
+		$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)
+	else:
+		$HBoxContainer/VBoxContainer2/AmmoCounter.text = ""
 
 func _on_Player_ammo_update(ammo):
-	$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)
+	if ammo > 0:
+		$HBoxContainer/VBoxContainer2/AmmoCounter.text = str(ammo)
+	else:
+		$HBoxContainer/VBoxContainer2/AmmoCounter.text = ""

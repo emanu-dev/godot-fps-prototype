@@ -11,7 +11,7 @@ onready var audio_stream = get_parent().get_node("AudioStreamPlayer")
 var weapon_inv = []
 var current_weapon setget set_current_weapon, get_current_weapon
 var switching_weapon = false setget set_switching_weapon, is_switching_weapon
-var current_index = 0
+var current_index = 1
 var can_shoot = true setget set_can_shoot, can_shoot
 enum weapon_types {MELEE, PISTOL, SPREAD, RAPID}
 
@@ -20,12 +20,12 @@ func _ready():
 	weapon_inv.append({ "name" : "Bat",
 	"type": weapon_types.MELEE,
 	"anim": "bat",
-	"shot_sfx": load("res://SFX/shot-handgun.wav"),
+	"shot_sfx": load("res://SFX/bat-swoosh.wav"),
 	"shotrange": -5,
 	"rate": .6,
 	"damage": 25,
-	"max_ammo": 25,
-	"ammo": 25 })	
+	"max_ammo": -1,
+	"ammo": -1 })	
 	
 	weapon_inv.append({ "name" : "Handgun",
 	"type": weapon_types.PISTOL,
@@ -50,15 +50,15 @@ func _ready():
 	weapon_inv.append({ "name" : "Shotgun",
 	"type": weapon_types.SPREAD,
 	"anim": "shotgun",
-	"shot_sfx": load("res://SFX/shot-handgun.wav"),
+	"shot_sfx": load("res://SFX/shot-shotgun.wav"),
 	"shotrange": -15,
 	"rate": 1.6,
 	"damage": 50,
 	"max_ammo": 8,
 	"ammo": 8 })
 	
+	call_deferred("set_current_weapon", current_index)
 	state_machine.start("up_weapon")
-	call_deferred("set_current_weapon", 0)
 	
 func set_current_weapon(index):
 	current_weapon = weapon_inv[index]
@@ -87,15 +87,15 @@ func switch_weapon_down():
 	set_current_weapon(current_index)
 
 func update_weapon_parameters(current_weapon):
-	
 	raycast.cast_to = Vector3(0,0, current_weapon.shotrange)
 	
 func shoot_weapon():
 	
-	if current_weapon.ammo > 0:
+	if current_weapon.ammo > 0 || current_weapon["type"] == weapon_types.MELEE:
 		set_can_shoot(false)
 		state_machine.travel("still")
 		anim_player.play(current_weapon["anim"])
+		audio_stream.stream = current_weapon["shot_sfx"]
 		audio_stream.play()
 		decrease_ammo(1)
 		
@@ -117,7 +117,10 @@ func shoot_weapon():
 		
 		yield(get_tree().create_timer(current_weapon.rate), "timeout")	
 		set_can_shoot(true)
-		
+	else:
+		audio_stream.stream = load("res://SFX/out_of_ammo.wav")
+		audio_stream.play()
+	
 func decrease_ammo(amount):
 	current_weapon.ammo -= amount
 	get_parent().emit_signal("ammo_update", current_weapon.ammo)
