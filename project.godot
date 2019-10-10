@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Sprite3D",
 "class": "WeaponPickup",
 "language": "GDScript",
-"path": "res://WeaponPickup.gd"
+"path": "res://Classes/WeaponPickup.gd"
 } ]
 _global_script_class_icons={
 "StateMachine": "",
@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="FPSPrototype"
-run/main_scene="res://World.tscn"
+run/main_scene="res://Scenes/Levels/World.tscn"
 config/icon="res://icon.png"
 
 [display]
