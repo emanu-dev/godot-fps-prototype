@@ -1,16 +1,17 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ImpTest.gd" type="Script" id=1]
 [ext_resource path="res://Blood.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/ZombieFinal.png" type="Texture" id=3]
-[ext_resource path="res://States.gd" type="Script" id=4]
-[ext_resource path="res://Signals.gd" type="Script" id=5]
-[ext_resource path="res://icon-front.png" type="Texture" id=6]
-[ext_resource path="res://MonsterAudioPlayer.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/ZombieAltFinal.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/ZombieFinal.png" type="Texture" id=4]
+[ext_resource path="res://States.gd" type="Script" id=5]
+[ext_resource path="res://Signals.gd" type="Script" id=6]
+[ext_resource path="res://icon-front.png" type="Texture" id=7]
+[ext_resource path="res://MonsterAudioPlayer.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.603997
-height = 1.17503
+radius = 0.32317
+height = 2.15788
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
@@ -163,7 +164,7 @@ anims/walk = SubResource( 8 )
 material_override = SubResource( 9 )
 offset = Vector2( 0, -8 )
 pixel_size = 0.02
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 vframes = 5
 hframes = 30
 frame = 5
@@ -175,18 +176,19 @@ editor/display_folded = true
 shape = SubResource( 10 )
 
 [node name="States" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="Signals" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="DirectionPlaceholder" type="Sprite3D" parent="."]
 transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, -1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 unit_db = 28.0
 max_db = 6.0
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Signals" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="Area" to="Signals" method="_on_Area_body_entered"]

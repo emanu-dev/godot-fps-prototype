@@ -1,17 +1,31 @@
-extends Node
+extends Sprite3D
 
+class_name WeaponPickup
+
+var player
 enum weapon_types {MELEE, PISTOL, SPREAD, RAPID}
-var properties = {}
+var weapon_obj = {}
 
-func construct(weapon_name, weapon_type, texture_path, shot_sfx_path, frames, shot_range, fire_rate, max_damage, max_ammo, initial_ammo):
-	properties["name"] = weapon_name
-	properties["type"] = weapon_type
-	properties["texture"] = load(texture_path)
-	properties["shot_sfx"] = load(shot_sfx_path)
-	properties["frames"] = {"h": frames.h, "v": frames.v}
-	properties["shotrange"] = shot_range
-	properties["rate"] = fire_rate
-	properties["damage"] = max_damage
-	properties["max_ammo"] = max_ammo
-	properties["ammo"] = initial_ammo
+func _process(delta):
+	$AnimationPlayer.play("Hover")
+
+func set_player(p):
+	player = p
 	
+func destroy():
+	yield($AudioStreamPlayer, "finished")
+	get_parent().remove_child(self)
+
+func _on_Area_body_entered(body):
+	if player != null && body == player:
+		var weapon_inv = player.get_weapon_system().get_weapon_inv()
+		weapon_inv.append(weapon_obj)
+		
+		player.feedback_canvas.feedback_recover()
+		player.get_weapon_system().set_current_weapon(weapon_inv.size() - 1)
+		$AudioStreamPlayer.play()
+		$Area/CollisionShape.disabled = true
+		self.visible = false		
+		destroy()
+	else:
+		return

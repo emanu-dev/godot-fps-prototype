@@ -23,7 +23,7 @@ func _ready():
 	"shot_sfx": load("res://SFX/bat-swoosh.wav"),
 	"shotrange": -5,
 	"rate": .6,
-	"damage": 25,
+	"damage": 30,
 	"max_ammo": -1,
 	"ammo": -1 })	
 	
@@ -33,30 +33,10 @@ func _ready():
 	"shot_sfx": load("res://SFX/shot-handgun.wav"),
 	"shotrange": -100,
 	"rate": .6,
-	"damage": 34,
+	"damage": 50,
 	"max_ammo": 25,
 	"ammo": 25 })
-	
-	weapon_inv.append({ "name" : "Machine Gun",
-	"type": weapon_types.RAPID,
-	"anim": "smg",
-	"shot_sfx": load("res://SFX/shot-handgun.wav"),
-	"shotrange": -200,
-	"rate": .2,
-	"damage": 10,
-	"max_ammo": 350,
-	"ammo": 350 })	
 
-	weapon_inv.append({ "name" : "Shotgun",
-	"type": weapon_types.SPREAD,
-	"anim": "shotgun",
-	"shot_sfx": load("res://SFX/shot-shotgun.wav"),
-	"shotrange": -15,
-	"rate": 1.6,
-	"damage": 50,
-	"max_ammo": 8,
-	"ammo": 8 })
-	
 	call_deferred("set_current_weapon", current_index)
 	state_machine.start("up_weapon")
 	
@@ -65,7 +45,7 @@ func set_current_weapon(index):
 	update_weapon_parameters(current_weapon)	
 	get_parent().emit_signal("weapon_change", get_current_weapon().name, get_current_weapon().ammo)
 	anim_player.play(current_weapon["anim"] + "-idle")
-	
+	current_index = index
 	
 func get_current_weapon():
 	return current_weapon

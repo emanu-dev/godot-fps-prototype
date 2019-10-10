@@ -2,25 +2,27 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shotgun.png-465890d7330ddbde59bad2c9e91d77b8.stex"
+path.s3tc="res://.import/shotgun.png-465890d7330ddbde59bad2c9e91d77b8.s3tc.stex"
+path.etc="res://.import/shotgun.png-465890d7330ddbde59bad2c9e91d77b8.etc.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Sprites/Items/shotgun.png"
-dest_files=[ "res://.import/shotgun.png-465890d7330ddbde59bad2c9e91d77b8.stex" ]
+dest_files=[ "res://.import/shotgun.png-465890d7330ddbde59bad2c9e91d77b8.s3tc.stex", "res://.import/shotgun.png-465890d7330ddbde59bad2c9e91d77b8.etc.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=true
+flags/repeat=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +32,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

@@ -119,12 +119,12 @@ func follow_target (target):
 	look_at(target.translation, Vector3(0, 1, 0))
 	move_and_collide(vec_to_target * MOVE_SPEED * get_physics_process_delta_time () )
 
-func _on_ImpTest_target_entered():
-	$Area/CollisionShape.disabled = true;
-	foundPlayer = true
-
 func sound_play_groan(audio_stream):
 	audio_stream.play_found()
 
 func _get_distance_from_target(target):
 	return self.translation.distance_to(target.translation)
+	
+func _on_ImpTest_target_entered():
+	$Area/CollisionShape.disabled = true;
+	foundPlayer = true
