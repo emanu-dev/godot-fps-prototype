@@ -28,7 +28,7 @@ func _get_transition(delta):
 	match state:
 		states.idle:
 			if parent.foundPlayer:
-				if _is_randomized(50, 100):
+				if parent.is_randomized(50, 100):
 					return states.taunt
 				else:
 					return states.pursuit
@@ -45,7 +45,7 @@ func _get_transition(delta):
 				return states.attack				
 		states.hurt:
 			if !parent.hurt:
-				if _is_randomized(50, 100):
+				if parent.is_randomized(50, 100):
 					return states.taunt
 				else:
 					return states.pursuit
@@ -94,10 +94,4 @@ func _exit_state(old_state, new_state):
 		states.idle:
 			parent.audio_stream.play_found()
 			
-func _is_randomized(odds, total_chances):
-	randomize()
-	var result = randi() % total_chances
-	if result < odds:
-		return true
-	else:
-		return false	
+

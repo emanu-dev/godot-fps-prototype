@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "GenericEnemy",
+"language": "GDScript",
+"path": "res://Classes/GenericEnemy.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Classes/WeaponPickup.gd"
 } ]
 _global_script_class_icons={
+"GenericEnemy": "",
 "StateMachine": "",
 "WeaponPickup": ""
 }
