@@ -9,7 +9,7 @@ var camera = null
 func set_camera(c):
 	camera = c 
 
-const MOVE_SPEED = 5
+export var MOVE_SPEED = 5
 const DETECT_DISTANCE = 20
 const DETECT_FOV = 45
 
@@ -25,7 +25,7 @@ var player = null
 var dead = false
 var hurt = false
 
-var health = 100
+export var health = 100
 export var attack_range = 1.8
 
 func _ready():
