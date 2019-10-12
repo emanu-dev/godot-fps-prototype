@@ -13,6 +13,7 @@ var current_weapon setget set_current_weapon, get_current_weapon
 var switching_weapon = false setget set_switching_weapon, is_switching_weapon
 var current_index = 1
 var can_shoot = true setget set_can_shoot, can_shoot
+var weapon_click = true
 enum weapon_types {MELEE, PISTOL, SPREAD, RAPID}
 
 # Called when the node enters the scene tree for the first time.
@@ -39,6 +40,10 @@ func _ready():
 
 	call_deferred("set_current_weapon", current_index)
 	state_machine.start("up_weapon")
+
+func _process(delta):
+	if !weapon_click:
+		weapon_click = true
 	
 func set_current_weapon(index):
 	current_weapon = weapon_inv[index]
@@ -90,11 +95,14 @@ func shoot_weapon():
 		
 		yield(get_tree().create_timer(current_weapon.rate), "timeout")	
 		set_can_shoot(true)
-	else:
-		if !audio_stream.is_playing():
-			audio_stream.stream = load("res://SFX/out_of_ammo.wav")
-			audio_stream.play()
-	
+
+func has_ammo():
+	return current_weapon.ammo > 0 || current_weapon["type"] == weapon_types.MELEE
+
+func no_ammo_clip():
+	audio_stream.stream = load("res://SFX/out_of_ammo.wav")
+	audio_stream.play()
+
 func decrease_ammo(amount):
 	current_weapon.ammo -= amount
 	get_parent().emit_signal("ammo_update", current_weapon.ammo)
@@ -178,7 +186,6 @@ func shoot_enemy(player, enemy, weapon_range, damage):
 		
 		if ray && ray.collider == enemy:
 			distance = clamp(distance, 0, abs(weapon_range) * 1.5)
-			#print(current_weapon.damage - distance)
 			enemy.hurt(current_weapon.damage - distance)
 
 static func sortEnemiesByDist(a, b):

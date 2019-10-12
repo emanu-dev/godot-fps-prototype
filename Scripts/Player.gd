@@ -64,7 +64,10 @@ func _process(delta):
 		pass
 	else:
 		state_machine.travel("still")
-		
+	
+	if health < 30:
+		$Camera.fov = 70 - (health - 30)*2
+	
 func _physics_process(delta):
 	move_vec = Vector3()	
 	
@@ -84,6 +87,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot") and $Weapon.can_shoot():
 		if !$Weapon.is_switching_weapon():
 			$Weapon.shoot_weapon()
+	
+	if Input.is_action_just_pressed("shoot") and !$Weapon.has_ammo():
+		$Weapon.no_ammo_clip()
 
 func hurt(dmg):
 	if health - dmg <= 0:
