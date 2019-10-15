@@ -291,6 +291,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody"]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]

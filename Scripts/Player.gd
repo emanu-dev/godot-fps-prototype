@@ -65,9 +65,6 @@ func _process(delta):
 	else:
 		state_machine.travel("still")
 	
-	if health < 30:
-		$Camera.fov = 70 - (health - 30)*2
-	
 func _physics_process(delta):
 	move_vec = Vector3()	
 	
