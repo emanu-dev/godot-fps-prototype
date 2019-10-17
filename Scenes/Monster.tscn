@@ -171,6 +171,7 @@ hframes = 28
 frame = 5
 
 [node name="Area" type="Area" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 10 )
@@ -189,6 +190,10 @@ texture = ExtResource( 6 )
 unit_db = 28.0
 max_db = 6.0
 script = ExtResource( 7 )
+
+[node name="SlopeRayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.21383, 0 )
+enabled = true
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Signals" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Area" to="Signals" method="_on_Area_body_entered"]

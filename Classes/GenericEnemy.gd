@@ -9,7 +9,7 @@ var camera = null
 func set_camera(c):
 	camera = c 
 
-export var MOVE_SPEED = 5
+export var MOVE_SPEED = 300
 const DETECT_DISTANCE = 20
 const DETECT_FOV = 45
 
@@ -24,6 +24,7 @@ onready var sfx_groan = load("res://SFX/groan.wav")
 var player = null
 var dead = false
 var hurt = false
+var has_contact = false
 
 export var health = 100
 export var attack_range = 1.8
@@ -113,10 +114,19 @@ func check_fov():
 	
 func follow_target (target):
 	var vec_to_target = target.translation - translation
-	vec_to_target = vec_to_target.normalized()
 	
-	look_at(target.translation, Vector3(0, 1, 0))
-	move_and_collide(vec_to_target * MOVE_SPEED * get_physics_process_delta_time () )
+	if (is_on_floor()):
+		has_contact = true
+	else:
+		if !$SlopeRayCast.is_colliding():
+			has_contact = false
+			
+	if (has_contact and !is_on_floor()):
+		move_and_collide(Vector3(0, -1, 0))
+	
+	vec_to_target = vec_to_target.normalized()
+	look_at(target.translation, Vector3(0, 1, 0))	
+	move_and_slide(vec_to_target * MOVE_SPEED * get_physics_process_delta_time () )
 
 func sound_play_groan(audio_stream):
 	audio_stream.play_found()

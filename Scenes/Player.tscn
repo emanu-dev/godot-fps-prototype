@@ -12,7 +12,7 @@
 radius = 0.48707
 height = 1.20344
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=2]
 resource_name = "dead"
 length = 2.0
 tracks/0/type = "value"
@@ -40,8 +40,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -65 ), Vector2( 0, 80 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "down_weapon"
+[sub_resource type="Animation" id=3]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:position")
@@ -56,7 +55,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -65 ), Vector2( 0, 32 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -72,8 +71,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -65 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "up_weapon"
+[sub_resource type="Animation" id=5]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:position")
@@ -88,7 +86,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 32 ), Vector2( 0, -65 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -104,25 +102,23 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -65 ), Vector2( -20, -75 ), Vector2( 0, -65 ), Vector2( 20, -75 ), Vector2( 0, -65 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "down_weapon"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "still"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "up_weapon"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
+xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
@@ -132,22 +128,23 @@ xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachine" id=17]
-states/down_weapon/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=18]
+states/down_weapon/node = SubResource( 7 )
 states/down_weapon/position = Vector2( 262.302, 210.78 )
-states/still/node = SubResource( 7 )
+states/still/node = SubResource( 8 )
 states/still/position = Vector2( 138, 130 )
-states/up_weapon/node = SubResource( 8 )
+states/up_weapon/node = SubResource( 9 )
 states/up_weapon/position = Vector2( 262.302, 308 )
-states/walking/node = SubResource( 9 )
+states/walking/node = SubResource( 10 )
 states/walking/position = Vector2( 409, 130 )
-transitions = [ "still", "walking", SubResource( 10 ), "walking", "still", SubResource( 11 ), "up_weapon", "still", SubResource( 12 ), "up_weapon", "walking", SubResource( 13 ), "still", "down_weapon", SubResource( 14 ), "down_weapon", "up_weapon", SubResource( 15 ), "walking", "down_weapon", SubResource( 16 ) ]
+transitions = [ "still", "walking", SubResource( 11 ), "walking", "still", SubResource( 12 ), "up_weapon", "still", SubResource( 13 ), "up_weapon", "walking", SubResource( 14 ), "still", "down_weapon", SubResource( 15 ), "down_weapon", "up_weapon", SubResource( 16 ), "walking", "down_weapon", SubResource( 17 ) ]
 graph_offset = Vector2( -219.773, 110.78 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
-[sub_resource type="Animation" id=19]
-resource_name = "bat"
+[sub_resource type="Animation" id=20]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -186,8 +183,7 @@ tracks/2/keys = {
 "values": [ Vector2( -78.88, 70 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=20]
-resource_name = "bat-idle"
+[sub_resource type="Animation" id=21]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -226,7 +222,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=22]
 length = 0.4
 step = 0.2
 tracks/0/type = "value"
@@ -242,8 +238,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 0 ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "handgun-idle"
+[sub_resource type="Animation" id=23]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -258,7 +253,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=24]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -273,8 +268,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 6, 8 ]
 }
 
-[sub_resource type="Animation" id=24]
-resource_name = "shotgun-idle"
+[sub_resource type="Animation" id=25]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -289,7 +283,7 @@ tracks/0/keys = {
 "values": [ 8 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=26]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -304,8 +298,7 @@ tracks/0/keys = {
 "values": [ 10, 9 ]
 }
 
-[sub_resource type="Animation" id=26]
-resource_name = "smg-idle"
+[sub_resource type="Animation" id=27]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponCanvas/Control/WeaponSprite:frame")
@@ -323,26 +316,30 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
+[node name="SlopeRayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.59306, 0 )
+enabled = true
+
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790439, 0 )
-far = 200.0
+far = 300.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="BobbingPlayer" type="AnimationPlayer" parent="."]
-anims/dead = SubResource( 27 )
-anims/down_weapon = SubResource( 2 )
-anims/still = SubResource( 3 )
-anims/up_weapon = SubResource( 4 )
-anims/walking = SubResource( 5 )
+anims/dead = SubResource( 2 )
+anims/down_weapon = SubResource( 3 )
+anims/still = SubResource( 4 )
+anims/up_weapon = SubResource( 5 )
+anims/walking = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 17 )
+tree_root = SubResource( 18 )
 anim_player = NodePath("../BobbingPlayer")
 active = true
-parameters/playback = SubResource( 18 )
+parameters/playback = SubResource( 19 )
 
 [node name="FeedbackCanvas" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -391,16 +388,17 @@ enabled = true
 cast_to = Vector3( 0, 0, -2000 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/bat = SubResource( 19 )
-anims/bat-idle = SubResource( 20 )
-anims/handgun = SubResource( 21 )
-anims/handgun-idle = SubResource( 22 )
-anims/shotgun = SubResource( 23 )
-anims/shotgun-idle = SubResource( 24 )
-anims/smg = SubResource( 25 )
-anims/smg-idle = SubResource( 26 )
+anims/bat = SubResource( 20 )
+anims/bat-idle = SubResource( 21 )
+anims/handgun = SubResource( 22 )
+anims/handgun-idle = SubResource( 23 )
+anims/shotgun = SubResource( 24 )
+anims/shotgun-idle = SubResource( 25 )
+anims/smg = SubResource( 26 )
+anims/smg-idle = SubResource( 27 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
 anchor_left = 0.5

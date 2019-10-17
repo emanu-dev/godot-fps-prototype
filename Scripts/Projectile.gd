@@ -4,7 +4,7 @@ var player = null
 var target = null
 var parent = null
 
-const MOVE_SPEED = 8
+const MOVE_SPEED = 12
 
 func destroy():
 	self.visible = false

@@ -1,8 +1,5 @@
 extends KinematicBody
 
-const MOVE_SPEED = 10
-const MOUSE_SENS = 0.5
-
 signal health_update
 signal weapon_change
 signal ammo_update
@@ -14,8 +11,13 @@ onready var camera = $Camera
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var feedback_canvas = $FeedbackCanvas
 
-var move_vec
 var health = 100
+const MOVE_SPEED = 800
+const MOUSE_SENS = 0.5
+var move_vec = Vector3()
+var gravity = 50
+var jump_height = 15
+var has_contact = false
 
 func _ready():
 	state_machine.start('still')
@@ -59,7 +61,7 @@ func _process(delta):
 				yield(get_tree().create_timer(.4), "timeout")	
 				$Weapon.set_switching_weapon(false)
 		
-		if move_vec != Vector3(0,0,0) && !anim_player.is_playing() && !$Weapon.is_switching_weapon():
+		if move_vec.x != 0 && !anim_player.is_playing() && !$Weapon.is_switching_weapon():
 			state_machine.travel("walking")
 		elif $Weapon.is_switching_weapon():
 			pass
@@ -67,9 +69,9 @@ func _process(delta):
 			state_machine.travel("still")
 	
 func _physics_process(delta):
+	move_vec = Vector3()
+	
 	if health > 0:
-		move_vec = Vector3()	
-		
 		if Input.is_action_pressed("move_forwards"):
 			move_vec.z -= 1
 		if Input.is_action_pressed("move_backwards"):
@@ -79,9 +81,20 @@ func _physics_process(delta):
 		if Input.is_action_pressed("move_right"):
 			move_vec.x += 1		
 			
+		if (is_on_floor()):
+			has_contact = true
+		else:
+			if !$SlopeRayCast.is_colliding():
+				has_contact = false
+				
+		if (has_contact and !is_on_floor()):
+			move_and_collide(Vector3(0, -1, 0))
+
 		move_vec = move_vec.normalized()
+		move_vec.y -= gravity * delta
 		move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
-		move_and_collide(move_vec * MOVE_SPEED * delta)
+		move_and_slide(move_vec * MOVE_SPEED * delta, Vector3(0, 1, 0), 0.15)
+		
 		
 		if Input.is_action_pressed("shoot") and $Weapon.can_shoot():
 			if !$Weapon.is_switching_weapon():

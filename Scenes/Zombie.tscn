@@ -9,7 +9,6 @@
 [ext_resource path="res://Sprites/icon-front.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/MonsterAudioPlayer.gd" type="Script" id=8]
 
-
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.542494
 height = 1.73143
@@ -189,6 +188,10 @@ texture = ExtResource( 7 )
 unit_db = 28.0
 max_db = 6.0
 script = ExtResource( 8 )
+
+[node name="SlopeRayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.830104, 0 )
+enabled = true
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Signals" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Area" to="Signals" method="_on_Area_body_entered"]
