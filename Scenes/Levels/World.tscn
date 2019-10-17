@@ -73,54 +73,54 @@ fog_height_max = -163.7
 [node name="World" type="Spatial"]
 
 [node name="Enemies" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Monster" parent="Enemies" instance=ExtResource( 1 )]
-transform = Transform( -0.99878, 0, -0.0493961, 0, 1, 0, 0.0493961, 0, -0.99878, -0.420436, 2.40102, 6.53649 )
+transform = Transform( -0.99878, 0, -0.0493961, 0, 1, 0, 0.0493961, 0, -0.99878, -0.420436, 5.71677, 6.53649 )
 
 [node name="ImpTest7" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( 0.0633612, 0, -0.997991, 0, 1, 0, 0.997991, 0, 0.0633612, -4.95506, 1.91041, 15.2712 )
+transform = Transform( 0.0633612, 0, -0.997991, 0, 1, 0, 0.997991, 0, 0.0633612, -4.95506, 5.24106, 12.2558 )
 
 [node name="ImpTest9" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 9.06678, 1.91041, 15.2712 )
+transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 9.06678, 5.29617, 15.2712 )
 
 [node name="ImpTest10" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 12.4483, 1.91041, 15.2712 )
+transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 12.4483, 5.29617, 15.2712 )
 
 [node name="ImpTest11" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 15.3049, 1.91041, 15.2712 )
+transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 15.3049, 5.29617, 15.2712 )
 
 [node name="ImpTest8" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.41736, 0, -0.908742, 0, 1, 0, 0.908742, 0, -0.41736, -6.43877, 1.91041, 11.6254 )
+transform = Transform( -0.41736, 0, -0.908742, 0, 1, 0, 0.908742, 0, -0.41736, -6.43877, 5.29617, 11.6254 )
 
 [node name="ImpTest2" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.313909, 0, 0.949453, 0, 1, 0, -0.949453, 0, -0.313909, 23.3421, 1.91041, -3.70521 )
+transform = Transform( -0.313909, 0, 0.949453, 0, 1, 0, -0.949453, 0, -0.313909, 23.3421, 5.29617, -3.70521 )
 
 [node name="ImpTest3" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.487675, 0, 0.873025, 0, 1, 0, -0.873025, 0, -0.487675, 20.8193, 1.91041, -1.69545 )
+transform = Transform( -0.487675, 0, 0.873025, 0, 1, 0, -0.873025, 0, -0.487675, 20.8193, 5.29617, -1.69545 )
 
 [node name="ImpTest4" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.999991, 0, 0.00426039, 0, 1, 0, -0.00426039, 0, -0.999991, 12.4078, 1.91041, -33.5888 )
+transform = Transform( -0.999991, 0, 0.00426039, 0, 1, 0, -0.00426039, 0, -0.999991, 12.4078, 5.29617, -33.5888 )
 
 [node name="ImpTest5" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.224109, 0, -0.974564, 0, 1, 0, 0.974564, 0, -0.224109, 7.85193, 1.91041, -24.7868 )
+transform = Transform( -0.224109, 0, -0.974564, 0, 1, 0, 0.974564, 0, -0.224109, 9.39987, 5.29617, -24.7868 )
 
 [node name="ImpTest17" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( 0.996108, 0, -0.0881365, 0, 1, 0, 0.0881365, 0, 0.996108, 12.3137, 1.91041, -15.3489 )
+transform = Transform( 0.996108, 0, -0.0881365, 0, 1, 0, 0.0881365, 0, 0.996108, 9.15604, 5.29617, -15.3489 )
 
 [node name="ImpTest14" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.952145, 0, -0.305646, 0, 1, 0, 0.305646, 0, -0.952145, 5.98425, 1.91041, -32.6585 )
+transform = Transform( -0.952145, 0, -0.305646, 0, 1, 0, 0.305646, 0, -0.952145, 5.98425, 5.29617, -32.6585 )
 
 [node name="ImpTest15" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.952145, 0, -0.305646, 0, 1, 0, 0.305646, 0, -0.952145, 4.14862, 1.91041, -27.344 )
+transform = Transform( -0.952145, 0, -0.305646, 0, 1, 0, 0.305646, 0, -0.952145, 4.14862, 5.29617, -27.344 )
 
 [node name="ImpTest16" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.398487, 5.6738e-05, -0.917174, 0.000305422, 1, -7.08251e-05, 0.917174, -0.00030835, -0.398487, 4.14862, 1.91041, -21.62 )
+transform = Transform( -0.398487, 5.6738e-05, -0.917174, 0.000305422, 1, -7.08251e-05, 0.917174, -0.00030835, -0.398487, 4.14862, 5.29617, -21.62 )
 
 [node name="ZombieRanged" parent="Enemies" instance=ExtResource( 3 )]
+transform = Transform( -0.305434, 0, -0.952213, 0, 1, 0, 0.952213, 0, -0.305434, -2.18454, 5.29617, -22.919 )
 
 [node name="ZombieRanged2" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( -0.999594, 0, 0.0284823, 0, 1, 0, -0.0284823, 0, -0.999594, 2.97746, 1.91041, 17.155 )
+transform = Transform( -0.999594, 0, 0.0284823, 0, 1, 0, -0.0284823, 0, -0.999594, 2.97746, 5.29617, 17.155 )
 
 [node name="Items" type="Node" parent="."]
 editor/display_folded = true

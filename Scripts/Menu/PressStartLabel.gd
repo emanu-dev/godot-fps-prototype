@@ -7,7 +7,8 @@ var alpha = .8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_color_override("font_color", Color(1,1,1))
+	pass
+	#add_color_override("font_color", Color(1,1,1))
 
 func _process(delta):
 	modulate.a += alpha * delta
