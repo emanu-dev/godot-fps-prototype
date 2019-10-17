@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UIFeedbackCanvas.gd" type="Script" id=2]
@@ -9,6 +9,36 @@
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
+radius = 0.48707
+height = 1.20344
+
+[sub_resource type="Animation" id=27]
+resource_name = "dead"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.75, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WeaponCanvas/Control/WeaponSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -65 ), Vector2( 0, 80 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "down_weapon"
@@ -291,10 +321,10 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody"]
-editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.790439, 0 )
 far = 200.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -302,6 +332,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="BobbingPlayer" type="AnimationPlayer" parent="."]
+anims/dead = SubResource( 27 )
 anims/down_weapon = SubResource( 2 )
 anims/still = SubResource( 3 )
 anims/up_weapon = SubResource( 4 )
@@ -370,7 +401,6 @@ anims/smg = SubResource( 25 )
 anims/smg-idle = SubResource( 26 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
 anchor_left = 0.5
@@ -379,7 +409,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 
 [node name="WeaponSprite" type="Sprite" parent="WeaponCanvas/Control"]
-position = Vector2( 0, 32 )
+position = Vector2( 0, -65 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 vframes = 2

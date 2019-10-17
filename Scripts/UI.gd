@@ -10,6 +10,12 @@ func _ready():
 
 func _on_Player_health_update(player):
 	$HBoxContainer/VBoxContainer/LifeCounter.text = str(player.health) +  "%"
+	if player.health < 30:
+		$HBoxContainer/VBoxContainer/LifeCounter.set("custom_colors/font_color", Color(1,0,0))
+	elif player.health < 50:
+			$HBoxContainer/VBoxContainer/LifeCounter.set("custom_colors/font_color", Color(1,1,0))
+	else:
+			$HBoxContainer/VBoxContainer/LifeCounter.set("custom_colors/font_color", Color(0,1,0))
 	
 func _on_Player_weapon_change(name, ammo):
 	$HBoxContainer/VBoxContainer2/AmmoLabel.text = name
