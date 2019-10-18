@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Models/floor.material" type="Material" id=1]
 [ext_resource path="res://Models/walls.material" type="Material" id=2]
 [ext_resource path="res://Models/ceiling.material" type="Material" id=3]
 [ext_resource path="res://Models/Elements/beam.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Models/Elements/stair.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Models/Elements/brokenpillar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Models/Elements/stair.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Models/Elements/tomb.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Plane"
@@ -64,6 +66,19 @@ shape = SubResource( 2 )
 [node name="Beam" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -4.68297, 2.40852, -1.62493 )
 
+[node name="Beam8" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -2.71645, 2.40852, 1.22199 )
+
+[node name="Scene Root" parent="Beam8" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.05036, 0.226613, -1.7062 )
+
+[node name="Scene Root2" parent="Beam8" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49353, -0.6492, 11.4914 )
+
+[node name="Beam9" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, 0.746969, 2.40852, -1.59558 )
+
 [node name="Beam2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -6.68297, 2.40852, -1.62493 )
 
@@ -82,11 +97,17 @@ transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -1.92426, 2.
 [node name="Beam7" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, 0.140538, 2.40852, 4.37507 )
 
-[node name="Stair" parent="." instance=ExtResource( 5 )]
+[node name="Stair" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1.8264, 0, 0, 0, 1.31615, 0, 0, 0, 2.00053, -1.39612, -0.00100234, 5.7839 )
 
-[node name="Stair2" parent="." instance=ExtResource( 5 )]
+[node name="Stair2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 2.87185, 0, 0, 0, 1.31615, 0, 0, 0, 2.00053, -8.79812, 0.940371, -2.07545 )
 
-[node name="Stair3" parent="." instance=ExtResource( 5 )]
+[node name="Stair3" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1.42275, 0, -2.02561e-07, 0, 1.31615, 0, 2.31135e-07, 0, -4.3057, -1.03153, -0.134558, -10.5797 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.0211273, 0, -0.999777, 0, 1, 0, 0.999777, 0, 0.0211273, 4.03929, -0.0412571, 13.7916 )
+
+[node name="Scene Root2" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.997777, 0, -0.066634, 0, 1, 0, 0.066634, 0, -0.997777, -7.47522, 1.994, -8.3246 )

@@ -60,7 +60,6 @@ texture = ExtResource( 2 )
 
 [node name="MainScreen" type="CenterContainer" parent="."]
 editor/display_folded = true
-visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 
@@ -222,6 +221,8 @@ position = Vector2( 160.559, 1.67249 )
 texture = ExtResource( 16 )
 
 [node name="Credits" type="CenterContainer" parent="."]
+editor/display_folded = true
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 rect_pivot_offset = Vector2( 31.4355, 44.0626 )
@@ -231,6 +232,13 @@ margin_left = 160.0
 margin_top = 90.0
 margin_right = 160.0
 margin_bottom = 90.0
+
+[node name="Panel" type="Panel" parent="Credits/Panel"]
+modulate = Color( 1, 1, 1, 0.741176 )
+margin_left = -147.0
+margin_top = -54.0
+margin_right = 151.0
+margin_bottom = 50.0
 
 [node name="Label5" type="Label" parent="Credits/Panel"]
 margin_left = -163.09
@@ -270,7 +278,14 @@ margin_bottom = 49.7104
 custom_fonts/bold_font = SubResource( 5 )
 custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
-bbcode_text = "[b]3D ASSETS[/b]
+bbcode_text = "[b]PulseHazard v1.0[/b]
+-------------------------------------------------------------
+[b]CONCEPT, PROGRAMMING, RENDERING AND LEVEL DESIGN[/b]
+[b]Emanuel Prado [emanu-dev | emannubit][/b]
+
+[b]ASSETS USED[/b]
+
+[b]3D ASSETS[/b]
 [b]Zombie[/b] by owestgate on Sketchfab
 [b]Monster[/b] by 3DMaesen on Sketchfab
 [b]3d walls props[/b] by DeadKir on OpenGameArt.org
@@ -280,14 +295,32 @@ bbcode_text = "[b]3D ASSETS[/b]
 [b]AKS-74U[/b] by Yksnawel on Sketchfab
 
 [b]2D ASSETS[/b]
+[b]24 Survival Pixel Art Icons[/b] by Jesper Brun Halfter on itch.io
 
 [b]MUSIC[/b]
 [b]Thugs[/b] by Tanner Helland on tannerhelland.com
 [b]History[/b] by megupets on megupets.com
-[url=aasd][/url]
+
 [b]SFX[/b]
-[b]Weapon FPS Pack [/b]by asd on YouTube"
-text = "3D ASSETS
+[b]FREE FPS Kit Sound Effects Pack [/b]by Big Rook Games on YouTube
+[b]GUN SFX [/b]by Creatix Visuals on creatrix-visuals.com
+[b]Monster Sound Effects[/b] Pack by Ogrebane on OpenGameArt.org
+
+[b]MADE WITH[/b]
+Godot 3.1
+Blender 2.8
+GNU Image Manipulation Program 2.8
+Pixelator 1.0.5
+
+2019, Meteoric Swarm"
+text = "PulseHazard v1.0
+-------------------------------------------------------------
+CONCEPT, PROGRAMMING, RENDERING AND LEVEL DESIGN
+Emanuel Prado [emanu-dev | emannubit]
+
+ASSETS USED
+
+3D ASSETS
 Zombie by owestgate on Sketchfab
 Monster by 3DMaesen on Sketchfab
 3d walls props by DeadKir on OpenGameArt.org
@@ -297,13 +330,24 @@ ZX-76 Shotgun by GoldGryphon on Sketchfab
 AKS-74U by Yksnawel on Sketchfab
 
 2D ASSETS
+24 Survival Pixel Art Icons by Jesper Brun Halfter on itch.io
 
 MUSIC
 Thugs by Tanner Helland on tannerhelland.com
 History by megupets on megupets.com
 
 SFX
-Weapon FPS Pack by asd on YouTube"
+FREE FPS Kit Sound Effects Pack by Big Rook Games on YouTube
+GUN SFX by Creatix Visuals on creatrix-visuals.com
+Monster Sound Effects Pack by Ogrebane on OpenGameArt.org
+
+MADE WITH
+Godot 3.1
+Blender 2.8
+GNU Image Manipulation Program 2.8
+Pixelator 1.0.5
+
+2019, Meteoric Swarm"
 
 [node name="Keyboard_Black_Mouse_Middle2" type="Sprite" parent="Credits/Panel"]
 position = Vector2( -68.3665, -71.2044 )
