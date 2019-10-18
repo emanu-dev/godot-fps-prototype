@@ -149,7 +149,7 @@ transform = Transform( -0.999594, 0, 0.0284823, 0, 1, 0, -0.0284823, 0, -0.99959
 [node name="Items" type="Node" parent="."]
 
 [node name="HealthItem" parent="Items" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.6087, 4.78537, 1.90817 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.6087, 4.78537, 0.404023 )
 
 [node name="HealthItem5" parent="Items" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.16942, 4.78537, -34.2648 )

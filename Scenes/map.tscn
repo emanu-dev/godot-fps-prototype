@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Models/floor.material" type="Material" id=1]
 [ext_resource path="res://Models/walls.material" type="Material" id=2]
 [ext_resource path="res://Models/ceiling.material" type="Material" id=3]
+[ext_resource path="res://Models/Elements/beam.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Models/Elements/stair.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Plane"
@@ -58,3 +60,33 @@ material/2 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Plane/StaticBody"]
 shape = SubResource( 2 )
+
+[node name="Beam" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -4.68297, 2.40852, -1.62493 )
+
+[node name="Beam2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -6.68297, 2.40852, -1.62493 )
+
+[node name="Beam3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -6.68297, 2.40852, 1.37507 )
+
+[node name="Beam4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -9.15161, 2.40852, 1.37507 )
+
+[node name="Beam5" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -6.5596, 2.40852, 4.37507 )
+
+[node name="Beam6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -1.92426, 2.40852, 4.37507 )
+
+[node name="Beam7" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, 0.140538, 2.40852, 4.37507 )
+
+[node name="Stair" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1.8264, 0, 0, 0, 1.31615, 0, 0, 0, 2.00053, -1.39612, -0.00100234, 5.7839 )
+
+[node name="Stair2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 2.87185, 0, 0, 0, 1.31615, 0, 0, 0, 2.00053, -8.79812, 0.940371, -2.07545 )
+
+[node name="Stair3" parent="." instance=ExtResource( 5 )]
+transform = Transform( -1.42275, 0, -2.02561e-07, 0, 1.31615, 0, 2.31135e-07, 0, -4.3057, -1.03153, -0.134558, -10.5797 )
