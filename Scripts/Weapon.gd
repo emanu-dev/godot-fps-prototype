@@ -36,7 +36,7 @@ func _ready():
 	"rate": .6,
 	"damage": 50,
 	"max_ammo": 25,
-	"ammo": 25 })
+	"ammo": 10 })
 
 	call_deferred("set_current_weapon", current_index)
 	state_machine.start("up_weapon")

@@ -10,11 +10,11 @@ params_billboard_mode = 2
 params_billboard_keep_scale = true
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="CylinderShape" id=3]
+[sub_resource type="CylinderShape" id=2]
 radius = 0.482181
 height = 0.64562
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -41,11 +41,13 @@ script = ExtResource( 2 )
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hover = SubResource( 4 )
+anims/Hover = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

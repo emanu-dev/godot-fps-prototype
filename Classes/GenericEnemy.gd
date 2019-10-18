@@ -116,7 +116,7 @@ func check_fov():
 func follow_target (target):
 	var vec_to_target = target.translation - translation
 	
-	if !$SlopeRayCast.is_colliding():
+	if !$SlopeRayCast.is_colliding() && !dead:
 		move_and_collide(Vector3(0, -1, 0))
 	
 	vec_to_target = vec_to_target.normalized()

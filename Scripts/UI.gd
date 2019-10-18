@@ -17,8 +17,13 @@ func _process(delta):
 	if current_enemies < 1:	
 		yield(get_tree().create_timer(1), "timeout")
 		get_tree().paused = true
+		
 		if $Panel.modulate.a < 1:
 			$Panel.modulate.a += 0.8 * delta
+		
+		if Input.is_action_just_pressed("exit"):
+			get_tree().paused = false
+			get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func _on_Player_health_update(player):
 	$HBoxContainer/VBoxContainer/LifeCounter.text = str(player.health) +  "%"

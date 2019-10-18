@@ -399,6 +399,7 @@ anims/smg-idle = SubResource( 27 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
 editor/display_folded = true
+layer = -1
 
 [node name="Control" type="Control" parent="WeaponCanvas"]
 anchor_left = 0.5

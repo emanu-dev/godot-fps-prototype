@@ -25,7 +25,7 @@ params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 7 )
 
 [sub_resource type="CylinderShape" id=2]
-radius = 0.482181
+radius = 1.01277
 height = 0.64562
 
 [sub_resource type="Animation" id=3]
@@ -79,22 +79,33 @@ margin_right = -15.0
 margin_bottom = -15.0
 
 [node name="Enemies" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Monster" parent="Enemies" instance=ExtResource( 2 )]
-transform = Transform( -0.698774, 0, -0.715344, 0, 1, 0, 0.715344, 0, -0.698774, 33.4254, 1.71726, -57.1804 )
+transform = Transform( -0.698774, 0, -0.715344, 0, 1, 0, 0.715344, 0, -0.698774, 36.2426, 1.71726, -53.0218 )
+
+[node name="ImpTest13" parent="Enemies" instance=ExtResource( 3 )]
+transform = Transform( -0.867314, 0, -0.497763, 0, 1, 0, 0.497763, 0, -0.867314, 32.3247, 1.31448, -55.993 )
+
+[node name="ImpTest12" parent="Enemies" instance=ExtResource( 3 )]
+transform = Transform( -0.757927, 0, -0.65234, 0, 1, 0, 0.65234, 0, -0.757927, 36.9353, 1.31448, -54.8591 )
+
+[node name="ImpTest18" parent="Enemies" instance=ExtResource( 3 )]
+transform = Transform( -0.757927, 0, -0.65234, 0, 1, 0, 0.65234, 0, -0.757927, 35.3256, 1.31448, -57.9982 )
+
+[node name="ImpTest6" parent="Enemies" instance=ExtResource( 3 )]
+transform = Transform( -0.952378, 0, -0.304918, 0, 1, 0, 0.304918, 0, -0.952378, 34.4126, 1.31448, -52.8493 )
 
 [node name="ImpTest7" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( 0.0633612, 0, -0.997991, 0, 1, 0, 0.997991, 0, 0.0633612, -4.95506, 5.24106, 12.2558 )
+transform = Transform( 0.0633612, 0, -0.997991, 0, 1, 0, 0.997991, 0, 0.0633612, -5.72142, 5.24106, 13.8737 )
 
 [node name="ImpTest9" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 9.06678, 5.29617, 13.8515 )
+transform = Transform( -0.590764, 0, 0.806845, 0, 1, 0, -0.806845, 0, -0.590764, 18.7314, 5.29617, -4.83913 )
 
 [node name="ImpTest10" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 12.4483, 5.29617, 13.8515 )
+transform = Transform( -0.998249, 0, -0.0591532, 0, 1, 0, 0.0591532, 0, -0.998249, -28.5259, 5.29617, -11.9458 )
 
 [node name="ImpTest11" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0.00109594, 0, 1, 0, -0.00109594, 0, 1, 15.3049, 5.29617, 13.8624 )
+transform = Transform( -0.684371, 0, -0.729135, 0, 1, 0, 0.729135, 0, -0.684371, -31.8374, 5.29617, -10.5093 )
 
 [node name="ImpTest8" parent="Enemies" instance=ExtResource( 3 )]
 transform = Transform( -0.41736, 0, -0.908742, 0, 1, 0, 0.908742, 0, -0.41736, -7.50969, 5.29617, 9.94669 )
@@ -106,13 +117,13 @@ transform = Transform( -0.313909, 0, 0.949453, 0, 1, 0, -0.949453, 0, -0.313909,
 transform = Transform( -0.487675, 0, 0.873025, 0, 1, 0, -0.873025, 0, -0.487675, 20.8193, 5.29617, -1.69545 )
 
 [node name="ImpTest4" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( -0.999991, 0, 0.00426039, 0, 1, 0, -0.00426039, 0, -0.999991, 9.05052, 5.29617, -33.5888 )
+transform = Transform( -0.199143, 0, 0.979971, 0, 1, 0, -0.979971, 0, -0.199143, 5.34645, 5.29617, 12.8861 )
 
 [node name="ImpTest5" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( -0.224109, 0, -0.974564, 0, 1, 0, 0.974564, 0, -0.224109, 9.39987, 5.29617, -24.7868 )
+transform = Transform( -0.867442, 0, 0.497539, 0, 1, 0, -0.497539, 0, -0.867442, 13.0041, 1.1868, -49.4031 )
 
 [node name="ImpTest17" parent="Enemies" instance=ExtResource( 3 )]
-transform = Transform( 0.996108, 0, -0.0881365, 0, 1, 0, 0.0881365, 0, 0.996108, 9.15604, 5.29617, -15.3489 )
+transform = Transform( 0.611914, 0, 0.790924, 0, 1, 0, -0.790924, 0, 0.611914, 12.7603, 1.1868, -39.9652 )
 
 [node name="ImpTest14" parent="Enemies" instance=ExtResource( 3 )]
 transform = Transform( -0.952145, 0, -0.305646, 0, 1, 0, 0.305646, 0, -0.952145, -6.98487, 1.31595, -53.094 )
@@ -124,46 +135,72 @@ transform = Transform( -0.952145, 0, -0.305646, 0, 1, 0, 0.305646, 0, -0.952145,
 transform = Transform( -0.398487, 5.6738e-05, -0.917174, 0.000305422, 1, -7.08251e-05, 0.917174, -0.00030835, -0.398487, 1.3938, 5.29617, -21.62 )
 
 [node name="ZombieRanged" parent="Enemies" instance=ExtResource( 4 )]
-transform = Transform( -0.305434, 0, -0.952213, 0, 1, 0, 0.952213, 0, -0.305434, -2.18454, 5.29617, -22.919 )
+transform = Transform( -0.305434, 0, -0.952213, 0, 1, 0, 0.952213, 0, -0.305434, -32.8109, 5.29617, -2.82638 )
+
+[node name="ZombieRanged3" parent="Enemies" instance=ExtResource( 4 )]
+transform = Transform( -0.167313, 0, 0.985904, 0, 1, 0, -0.985904, 0, -0.167313, 20.0772, 1.24148, -63.8422 )
+
+[node name="ZombieRanged4" parent="Enemies" instance=ExtResource( 4 )]
+transform = Transform( -0.00918873, 0, -0.999958, 0, 1, 0, 0.999958, 0, -0.00918873, 29.5448, 1.24148, -44.619 )
 
 [node name="ZombieRanged2" parent="Enemies" instance=ExtResource( 4 )]
-transform = Transform( -0.999594, 0, 0.0284823, 0, 1, 0, -0.0284823, 0, -0.999594, -1.8757, 5.22635, 1.86942 )
+transform = Transform( -0.999594, 0, 0.0284823, 0, 1, 0, -0.0284823, 0, -0.999594, 8.86525, 5.22635, -33.3489 )
 
 [node name="Items" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="HealthItem" parent="Items" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.426, 1.05191, 14.4532 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.6087, 4.78537, 1.90817 )
+
+[node name="HealthItem5" parent="Items" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.16942, 4.78537, -34.2648 )
+
+[node name="HealthItem4" parent="Items" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.1629, 0.577362, -16.2246 )
 
 [node name="HealthItem2" parent="Items" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7534, 1.05191, 14.4532 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.6087, 4.78537, -1.41922 )
+
+[node name="HealthItem3" parent="Items" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.1629, 0.577362, -19.552 )
 
 [node name="HandgunAmmoItem" parent="Items" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89095, 1.05191, 5.096 )
-ammo_type = 1
-
-[node name="HandgunAmmoItem4" parent="Items" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89095, 1.05191, 6.94585 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.5938, 4.53944, 2.27351 )
 ammo_type = 1
 
 [node name="HandgunAmmoItem2" parent="Items" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35075, 1.05191, -30.5083 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.5608, 0.92453, 61.645 )
+ammo_type = 1
+
+[node name="HandgunAmmoItem4" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.7439, 4.53944, 2.27351 )
+ammo_type = 1
+
+[node name="HandgunAmmoItem5" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.711, 0.92453, 61.645 )
+ammo_type = 1
+
+[node name="ShotgunAmmo" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.826, 0.708038, -64.9568 )
+modulate = Color( 0, 1, 0, 1 )
 ammo_type = 2
 
-[node name="HandgunAmmoItem3" parent="Items" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35075, 1.05191, -27.886 )
+[node name="ShotgunAmmo2" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36545, 0.708038, -64.9568 )
+modulate = Color( 0, 1, 0, 1 )
+ammo_type = 2
+
+[node name="SMGAmmo" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.1387, 0.464752, -60.6891 )
 ammo_type = 3
 
 [node name="ShotgunPickup" type="Sprite3D" parent="Items"]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24836, 1.48476, 35.6781 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.1768, 8.37056, -31.3497 )
 material_override = SubResource( 1 )
 offset = Vector2( 0, -3.43619 )
 texture = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [node name="Area" type="Area" parent="Items/ShotgunPickup"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Items/ShotgunPickup/Area"]
 shape = SubResource( 2 )
@@ -175,14 +212,12 @@ anims/Hover = SubResource( 3 )
 stream = ExtResource( 10 )
 
 [node name="SMGPickup" type="Sprite3D" parent="Items"]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.08642, 1.48476, 35.6781 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9756, 0.549457, -46.9953 )
 material_override = SubResource( 1 )
 texture = ExtResource( 7 )
 script = ExtResource( 11 )
 
 [node name="Area" type="Area" parent="Items/SMGPickup"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Items/SMGPickup/Area"]
 shape = SubResource( 2 )
@@ -208,7 +243,7 @@ light_color = Color( 0.901961, 0.396078, 0.0941176, 1 )
 spot_range = 13.3
 
 [node name="SpotLight2" type="SpotLight" parent="."]
-transform = Transform( 0.759552, 0.555555, -0.33829, 0, 0.520089, 0.854112, 0.650447, -0.648742, 0.395034, 12.6012, 12.9055, 4.65531 )
+transform = Transform( 0.759552, 0.555555, -0.33829, 0, 0.520089, 0.854112, 0.650447, -0.648742, 0.395034, 12.6012, 8.69786, 2.69135 )
 light_color = Color( 0.901961, 0.396078, 0.0941176, 1 )
 spot_range = 13.3
 

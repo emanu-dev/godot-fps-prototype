@@ -10,4 +10,4 @@ func _ready():
 		"rate": .2,
 		"damage": 25,
 		"max_ammo": 350,
-		"ammo": 350 }
+		"ammo": 120 }
