@@ -60,6 +60,7 @@ texture = ExtResource( 2 )
 
 [node name="MainScreen" type="CenterContainer" parent="."]
 editor/display_folded = true
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 
@@ -103,86 +104,96 @@ margin_right = 160.0
 margin_bottom = 90.0
 
 [node name="Label" type="Label" parent="Controls/Panel2"]
-margin_left = -111.296
-margin_top = -8.87788
-margin_right = -47.2956
-margin_bottom = 0.122116
+margin_left = -102.312
+margin_top = -12.8707
+margin_right = -38.3118
+margin_bottom = -3.87065
 custom_fonts/font = SubResource( 3 )
 text = "Walk/Strafe"
 align = 1
 
 [node name="Label2" type="Label" parent="Controls/Panel2"]
-margin_left = -53.1988
-margin_top = -8.87788
-margin_right = 10.8012
-margin_bottom = 0.122116
+margin_left = -44.215
+margin_top = -12.8707
+margin_right = 19.785
+margin_bottom = -3.87065
 custom_fonts/font = SubResource( 3 )
 text = "Shoot"
 align = 1
 
 [node name="Label3" type="Label" parent="Controls/Panel2"]
-margin_left = -100.557
-margin_top = 41.9431
-margin_right = -18.5569
-margin_bottom = 50.9431
+margin_left = 14.5679
+margin_top = -13.2903
+margin_right = 96.568
+margin_bottom = -4.29026
 custom_fonts/font = SubResource( 3 )
 text = "Change weapons"
 align = 1
 
+[node name="Label6" type="Label" parent="Controls/Panel2"]
+margin_left = 2.59535
+margin_top = 15.3585
+margin_right = 87.5954
+margin_bottom = 36.3585
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.992157, 0.435294, 0.129412, 1 )
+text = "Goal: Defeat all 
+enemies to win!!"
+align = 1
+
 [node name="Pause" type="Label" parent="Controls/Panel2"]
-margin_left = -13.4253
-margin_top = 9.04709
-margin_right = 68.5747
-margin_bottom = 30.0471
+margin_left = -110.086
+margin_top = 31.9574
+margin_right = -28.0856
+margin_bottom = 52.9574
 custom_fonts/font = SubResource( 3 )
 text = "Pause"
 align = 1
 
 [node name="Pause2" type="Label" parent="Controls/Panel2"]
-margin_left = 27.1325
-margin_top = 9.04709
-margin_right = 109.133
-margin_bottom = 30.0471
+margin_left = -69.5278
+margin_top = 31.9574
+margin_right = 12.4727
+margin_bottom = 52.9574
 custom_fonts/font = SubResource( 3 )
 text = "Exit"
 align = 1
 
 [node name="Label4" type="Label" parent="Controls/Panel2"]
-margin_left = -46.3568
-margin_top = -74.8182
-margin_right = 43.6432
-margin_bottom = -54.8182
+margin_left = -139.144
+margin_top = -78.6665
+margin_right = -49.1444
+margin_bottom = -58.6665
 custom_fonts/font = SubResource( 4 )
 text = "How to play"
 align = 1
 
 [node name="Label5" type="Label" parent="Controls/Panel2"]
-margin_left = -93.071
-margin_top = 53.7624
-margin_right = 84.929
-margin_bottom = 73.7624
+margin_left = -40.8322
+margin_top = 59.4174
+margin_right = 137.168
+margin_bottom = 79.4174
 custom_fonts/font = SubResource( 4 )
-text = "Press enter to continue"
+text = "Press enter to continue >"
 align = 1
 
 [node name="Keyboard_Black_A" type="Sprite" parent="Controls/Panel2"]
-position = Vector2( -98.9445, -24.7977 )
+position = Vector2( -89.9608, -28.7905 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Keyboard_Black_D" type="Sprite" parent="Controls/Panel2"]
-position = Vector2( -57.9982, -24.9102 )
+position = Vector2( -49.0145, -28.903 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 8 )
 
 [node name="Keyboard_Black_S" type="Sprite" parent="Controls/Panel2"]
-position = Vector2( -78.2741, -24.83 )
+position = Vector2( -69.2903, -28.8228 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 9 )
 
 [node name="Keyboard_Black_W" type="Sprite" parent="Controls/Panel2"]
-editor/display_folded = true
-position = Vector2( -78.6985, -43.9171 )
+position = Vector2( -69.7147, -47.9099 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 10 )
 
@@ -191,7 +202,7 @@ position = Vector2( 226.932, 69.6385 )
 texture = ExtResource( 11 )
 
 [node name="Keyboard_Black_Mouse_Middle" type="Sprite" parent="Controls/Panel2/Keyboard_Black_W/Keyboard_Black_Mouse_Left"]
-position = Vector2( -271.561, 208.682 )
+position = Vector2( 153.004, 3.71967 )
 texture = ExtResource( 12 )
 
 [node name="Keyboard_Black_Q" type="Sprite" parent="Controls/Panel2/Keyboard_Black_W/Keyboard_Black_Mouse_Left/Keyboard_Black_Mouse_Middle"]
@@ -203,7 +214,7 @@ position = Vector2( 91.9868, 0 )
 texture = ExtResource( 14 )
 
 [node name="Keyboard_Black_P" type="Sprite" parent="Controls/Panel2/Keyboard_Black_W/Keyboard_Black_Mouse_Left/Keyboard_Black_Mouse_Middle/Keyboard_Black_Q/Keyboard_Black_E"]
-position = Vector2( 246.039, -132.178 )
+position = Vector2( -601.102, 180.397 )
 texture = ExtResource( 15 )
 
 [node name="Keyboard_Black_Esc" type="Sprite" parent="Controls/Panel2/Keyboard_Black_W/Keyboard_Black_Mouse_Left/Keyboard_Black_Mouse_Middle/Keyboard_Black_Q/Keyboard_Black_E/Keyboard_Black_P"]
@@ -211,10 +222,9 @@ position = Vector2( 160.559, 1.67249 )
 texture = ExtResource( 16 )
 
 [node name="Credits" type="CenterContainer" parent="."]
-editor/display_folded = true
-visible = false
 margin_right = 320.0
 margin_bottom = 180.0
+rect_pivot_offset = Vector2( 31.4355, 44.0626 )
 
 [node name="Panel" type="Panel" parent="Credits"]
 margin_left = 160.0
@@ -223,65 +233,82 @@ margin_right = 160.0
 margin_bottom = 90.0
 
 [node name="Label5" type="Label" parent="Credits/Panel"]
-margin_left = -46.3568
+margin_left = -163.09
 margin_top = -79.6459
-margin_right = 43.6432
+margin_right = -73.0897
 margin_bottom = -59.6459
 rect_pivot_offset = Vector2( 45, 9.64585 )
 custom_fonts/font = SubResource( 4 )
 text = "Credits"
 align = 1
 
+[node name="Label7" type="Label" parent="Credits/Panel"]
+margin_left = -58.244
+margin_top = -79.6459
+margin_right = 77.756
+margin_bottom = -59.6459
+rect_pivot_offset = Vector2( 45, 9.64585 )
+custom_fonts/font = SubResource( 4 )
+text = "Scroll to read all"
+align = 1
+
 [node name="Label6" type="Label" parent="Credits/Panel"]
-margin_left = -7.10947
+margin_left = -16.9441
 margin_top = 60.2794
-margin_right = 144.891
+margin_right = 147.056
 margin_bottom = 80.2794
 rect_pivot_offset = Vector2( 45, 9.64585 )
 custom_fonts/font = SubResource( 4 )
-text = "Press Enter to begin"
+text = "Press Enter to begin >"
 align = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Credits/Panel"]
 margin_left = -145.0
-margin_top = -56.0
+margin_top = -54.2896
 margin_right = 152.0
-margin_bottom = 48.0
+margin_bottom = 49.7104
 custom_fonts/bold_font = SubResource( 5 )
 custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
-bbcode_text = "3D Models:
+bbcode_text = "[b]3D ASSETS[/b]
 [b]Zombie[/b] by owestgate on Sketchfab
 [b]Monster[/b] by 3DMaesen on Sketchfab
-[b]3d walls props[/b] by DeadKir on Open Game Art.org
+[b]3d walls props[/b] by DeadKir on OpenGameArt.org
+[b]Bloody Baseball Bat[/b] by Jamie McFarlane on Sketchfab
+[b]Particle Accelerator Pistol[/b] by Comrade1208 on Sketchfab
+[b]ZX-76 Shotgun[/b] by GoldGryphon on Sketchfab
+[b]AKS-74U[/b] by Yksnawel on Sketchfab
 
-Music
+[b]2D ASSETS[/b]
+
+[b]MUSIC[/b]
 [b]Thugs[/b] by Tanner Helland on tannerhelland.com
 [b]History[/b] by megupets on megupets.com
-3D Models:
-[b]Zombie[/b] by owestgate on Sketchfab
-[b]Monster[/b] by 3DMaesen on Sketchfab
-[b]3d walls props[/b] by DeadKir on Open Game Art.org
-
-Music
-[b]Thugs[/b] by Tanner Helland on tannerhelland.com
-[b]History[/b] by megupets on megupets.com"
-text = "3D Models:
+[url=aasd][/url]
+[b]SFX[/b]
+[b]Weapon FPS Pack [/b]by asd on YouTube"
+text = "3D ASSETS
 Zombie by owestgate on Sketchfab
 Monster by 3DMaesen on Sketchfab
-3d walls props by DeadKir on Open Game Art.org
+3d walls props by DeadKir on OpenGameArt.org
+Bloody Baseball Bat by Jamie McFarlane on Sketchfab
+Particle Accelerator Pistol by Comrade1208 on Sketchfab
+ZX-76 Shotgun by GoldGryphon on Sketchfab
+AKS-74U by Yksnawel on Sketchfab
 
-Music
+2D ASSETS
+
+MUSIC
 Thugs by Tanner Helland on tannerhelland.com
 History by megupets on megupets.com
-3D Models:
-Zombie by owestgate on Sketchfab
-Monster by 3DMaesen on Sketchfab
-3d walls props by DeadKir on Open Game Art.org
 
-Music
-Thugs by Tanner Helland on tannerhelland.com
-History by megupets on megupets.com"
+SFX
+Weapon FPS Pack by asd on YouTube"
+
+[node name="Keyboard_Black_Mouse_Middle2" type="Sprite" parent="Credits/Panel"]
+position = Vector2( -68.3665, -71.2044 )
+scale = Vector2( 0.181063, 0.181063 )
+texture = ExtResource( 12 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )

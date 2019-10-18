@@ -79,6 +79,7 @@ margin_right = -15.0
 margin_bottom = -15.0
 
 [node name="Enemies" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Monster" parent="Enemies" instance=ExtResource( 2 )]
 transform = Transform( -0.698774, 0, -0.715344, 0, 1, 0, 0.715344, 0, -0.698774, 36.2426, 1.71726, -53.0218 )

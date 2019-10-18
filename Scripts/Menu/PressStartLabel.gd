@@ -9,7 +9,7 @@ var alpha = .8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) 
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 	start_label = get_node("MainScreen/VBoxContainer/MarginContainer/PressStartLabel")
 	controls = get_node("Controls")
 	credits = get_node("Credits")

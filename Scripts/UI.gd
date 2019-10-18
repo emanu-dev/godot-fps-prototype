@@ -13,6 +13,12 @@ func _ready():
 func _process(delta):
 	var current_enemies = get_tree().get_nodes_in_group("zombies").size()
 	$Top/VBoxContainer/Label.text = "Enemies: " + str(current_enemies) + "/" + str(init_enemies)
+
+	if Input.is_action_just_pressed("ui_accept") && current_enemies > 0:
+		if get_tree().paused == false:
+			get_tree().paused = true
+		else: 
+			get_tree().paused = false
 	
 	if current_enemies < 1:	
 		yield(get_tree().create_timer(1), "timeout")
@@ -24,7 +30,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("exit"):
 			get_tree().paused = false
 			get_tree().change_scene("res://Scenes/MainMenu.tscn")
-
+	else:
+		$PausedPanel.visible = get_tree().paused
+	
 func _on_Player_health_update(player):
 	$HBoxContainer/VBoxContainer/LifeCounter.text = str(player.health) +  "%"
 	if player.health < 30:
