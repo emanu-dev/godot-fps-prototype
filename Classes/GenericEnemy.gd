@@ -56,6 +56,7 @@ func kill():
 	dead = true
 	$CollisionShape.disabled = true
 	$Area.monitoring = false
+	remove_from_group("zombies")
 
 func hurt(dmg):
 	$Blood.burst(dmg)
@@ -115,13 +116,7 @@ func check_fov():
 func follow_target (target):
 	var vec_to_target = target.translation - translation
 	
-	if (is_on_floor()):
-		has_contact = true
-	else:
-		if !$SlopeRayCast.is_colliding():
-			has_contact = false
-			
-	if (has_contact and !is_on_floor()):
+	if !$SlopeRayCast.is_colliding():
 		move_and_collide(Vector3(0, -1, 0))
 	
 	vec_to_target = vec_to_target.normalized()
