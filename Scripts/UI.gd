@@ -14,7 +14,7 @@ func _process(delta):
 	var current_enemies = get_tree().get_nodes_in_group("zombies").size()
 	$Top/VBoxContainer/Label.text = "Enemies: " + str(current_enemies) + "/" + str(init_enemies)
 
-	if Input.is_action_just_pressed("ui_accept") && current_enemies > 0:
+	if Input.is_action_just_pressed("pause") && current_enemies > 0:
 		if get_tree().paused == false:
 			get_tree().paused = true
 		else: 

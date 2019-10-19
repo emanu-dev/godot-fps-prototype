@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Gudariak -3 fonts SIL Open Font License (OFL)/Gudariak-Regular.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Fonts/Gudariak -3 fonts SIL Open Font License (OFL)/Gudariak-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Fonts/Kenney Future.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -22,6 +23,10 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=6]
 size = 27
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
+font_data = ExtResource( 4 )
 
 [sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 3
@@ -109,16 +114,11 @@ text = "25"
 align = 2
 
 [node name="Panel" type="Panel" parent="."]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 320.0
 margin_bottom = 180.0
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Label" type="Label" parent="Panel/CenterContainer"]
+[node name="Label" type="Label" parent="Panel"]
 margin_left = 61.0
 margin_top = 61.0
 margin_right = 258.0
@@ -127,6 +127,16 @@ custom_fonts/font = SubResource( 6 )
 text = "You ROCK!
 Thanks for playing!"
 align = 1
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_left = 64.0807
+margin_top = 116.527
+margin_right = 258.081
+margin_bottom = 143.527
+custom_fonts/font = SubResource( 8 )
+text = "Press esc to return"
+align = 1
+valign = 1
 
 [node name="PausedPanel" type="Panel" parent="."]
 editor/display_folded = true
