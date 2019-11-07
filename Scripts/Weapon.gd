@@ -162,9 +162,6 @@ func get_enemies_in_range(group, weapon_range, weapon_radius, player, total):
 			if acos(a.dot(b)) <= deg2rad(weapon_radius): # If the angle is less than or equal to the radius
 				result_array.append(sorted_enemy[1])
 				i += 1
-			else:
-				result_array.append(sorted_enemy[1])
-				i += 1				
 
 	return result_array
 

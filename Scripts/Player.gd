@@ -95,13 +95,13 @@ func _physics_process(delta):
 		move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 		move_and_slide(move_vec * MOVE_SPEED * delta, Vector3(0, 1, 0), 0.15)
 		
-		
-		if Input.is_action_pressed("shoot") and $Weapon.can_shoot():
-			if !$Weapon.is_switching_weapon():
-				$Weapon.shoot_weapon()
-		
 		if Input.is_action_just_pressed("shoot") and !$Weapon.has_ammo():
 			$Weapon.no_ammo_clip()
+		
+		if Input.is_action_pressed("shoot"):
+			if $Weapon.can_shoot():
+				if !$Weapon.is_switching_weapon():
+					$Weapon.shoot_weapon()
 
 func hurt(dmg):
 	if health - dmg <= 0:
