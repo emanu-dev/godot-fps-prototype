@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Menu/PressStartLabel.gd" type="Script" id=1]
 [ext_resource path="res://menu-bg.png" type="Texture" id=2]
@@ -18,7 +18,8 @@
 [ext_resource path="res://Sprites/UI/Dark/Keyboard_Black_Esc.png" type="Texture" id=16]
 [ext_resource path="res://Fonts/ttf-bitstream-vera-1.10/VeraBd.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://Fonts/ttf-bitstream-vera-1.10/Vera.ttf" type="DynamicFontData" id=18]
-[ext_resource path="res://Music/Thugs-menu-theme.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Music/menu.ogg" type="AudioStream" id=19]
+[ext_resource path="res://SFX/gun-drop.wav" type="AudioStream" id=20]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -342,8 +343,8 @@ Free Keyboard Prompts Pack by Xelu on OpenGameArt.org
 Mp RIP Skybox by The Mighty Pete on http://www.custommapmakers.org/skyboxes.php
 
 MUSIC
-Thugs by Tanner Helland on tannerhelland.com
-History by megupets on megupets.com
+False Awakenings by Anders on https://soundcloud.com/anttu-janhunen
+Sixth Mass Extinction by Anders on https://soundcloud.com/anttu-janhunen
 
 SFX
 FREE FPS Kit Sound Effects Pack by Big Rook Games on YouTube
@@ -369,3 +370,6 @@ texture = ExtResource( 12 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
 autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )

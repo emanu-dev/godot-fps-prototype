@@ -13,7 +13,7 @@
 [ext_resource path="res://Scripts/SMGPickup.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/simple_skybox/Skybox.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Music/stage-music.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Music/level.ogg" type="AudioStream" id=14]
 [ext_resource path="res://Scenes/map.tscn" type="PackedScene" id=15]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -156,17 +156,18 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.608
 [node name="HealthItem5" parent="Items" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.16942, 4.78537, -34.2648 )
 
-[node name="HealthItem4" parent="Items" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.1629, 0.577362, -16.2246 )
-
 [node name="HealthItem2" parent="Items" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.6087, 4.78537, -1.41922 )
 
 [node name="HealthItem3" parent="Items" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.1629, 0.577362, -19.552 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.0271, 0.497284, -20.5214 )
 
 [node name="HandgunAmmoItem" parent="Items" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.5938, 4.53944, 2.27351 )
+ammo_type = 1
+
+[node name="HandgunAmmoItem3" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( -0.997133, 0, 0.0756749, 0, 1, 0, -0.0756749, 0, -0.997133, -15.297, 4.53944, -19.7198 )
 ammo_type = 1
 
 [node name="HandgunAmmoItem2" parent="Items" instance=ExtResource( 6 )]
@@ -175,6 +176,14 @@ ammo_type = 1
 
 [node name="HandgunAmmoItem4" parent="Items" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.7439, 4.53944, 2.27351 )
+ammo_type = 1
+
+[node name="HandgunAmmoItem7" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.0422, 0.537486, -18.4945 )
+ammo_type = 1
+
+[node name="HandgunAmmoItem6" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( -0.997133, 0, 0.0756749, 0, 1, 0, -0.0756749, 0, -0.997133, -15.157, 4.53944, -21.5644 )
 ammo_type = 1
 
 [node name="HandgunAmmoItem5" parent="Items" instance=ExtResource( 6 )]
@@ -188,6 +197,11 @@ ammo_type = 2
 
 [node name="ShotgunAmmo2" parent="Items" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36545, 0.708038, -64.9568 )
+modulate = Color( 0, 1, 0, 1 )
+ammo_type = 2
+
+[node name="ShotgunAmmo3" parent="Items" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0199, 0.54898, -16.5106 )
 modulate = Color( 0, 1, 0, 1 )
 ammo_type = 2
 
@@ -231,7 +245,7 @@ anims/Hover = SubResource( 4 )
 stream = ExtResource( 10 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.715442, 0, -0.698672, 0, 1, 0, 0.698672, 0, -0.715442, -22.4345, 2.83027, 49.493 )
+transform = Transform( -0.715442, 0, -0.698672, 0, 1, 0, 0.698672, 0, -0.715442, -22.4345, 0.922293, 49.493 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
@@ -260,7 +274,7 @@ light_energy = 0.2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-volume_db = 2.0
+volume_db = 1.0
 autoplay = true
 
 [node name="Map" parent="." instance=ExtResource( 15 )]

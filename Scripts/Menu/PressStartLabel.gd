@@ -29,8 +29,9 @@ func _process(delta):
 			get_node("MainScreen").visible = false
 			controls.visible = false
 			credits.visible = true
-		elif credits.visible == true:	
+		elif credits.visible == true:
 			get_tree().change_scene("res://Scenes/Levels/World.tscn")
+		$SFXPlayer.play()
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
