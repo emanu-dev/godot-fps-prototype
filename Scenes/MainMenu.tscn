@@ -222,7 +222,6 @@ position = Vector2( 160.559, 1.67249 )
 texture = ExtResource( 16 )
 
 [node name="Credits" type="CenterContainer" parent="."]
-editor/display_folded = true
 visible = false
 margin_right = 320.0
 margin_bottom = 180.0
@@ -302,8 +301,8 @@ bbcode_text = "[b]PulseHazard v1.1[/b]
 [b]Mp RIP Skybox[/b] by The Mighty Pete on http://www.custommapmakers.org/skyboxes.php
 
 [b]MUSIC[/b]
-[b]Thugs[/b] by Tanner Helland on tannerhelland.com
-[b]History[/b] by megupets on megupets.com
+[b]False Awakenings[/b] by Anders on https://soundcloud.com/anttu-janhunen
+[b]Sixth Mass Extinction[/b] by Anders on https://soundcloud.com/anttu-janhunen
 
 [b]SFX[/b]
 [b]FREE FPS Kit Sound Effects Pack [/b]by Big Rook Games on YouTube
