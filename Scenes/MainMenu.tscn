@@ -60,6 +60,7 @@ margin_bottom = 180.0
 texture = ExtResource( 2 )
 
 [node name="MainScreen" type="CenterContainer" parent="."]
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 
@@ -220,7 +221,6 @@ position = Vector2( 160.559, 1.67249 )
 texture = ExtResource( 16 )
 
 [node name="Credits" type="CenterContainer" parent="."]
-visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 rect_pivot_offset = Vector2( 31.4355, 44.0626 )
@@ -276,7 +276,7 @@ margin_bottom = 49.7104
 custom_fonts/bold_font = SubResource( 5 )
 custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
-bbcode_text = "[b]PulseHazard v1.1[/b]
+bbcode_text = "[b]PulseHazard v1.2[/b]
 -------------------------------------------------------------
 [b]CONCEPT, PROGRAMMING, RENDERING AND LEVEL DESIGN[/b]
 [b]Emanuel Prado[/b]
@@ -317,7 +317,7 @@ GNU Image Manipulation Program 2.8
 Pixelator 1.0.5
 
 2019, Meteoric Swarm"
-text = "PulseHazard v1.1
+text = "PulseHazard v1.2
 -------------------------------------------------------------
 CONCEPT, PROGRAMMING, RENDERING AND LEVEL DESIGN
 Emanuel Prado
@@ -358,6 +358,9 @@ GNU Image Manipulation Program 2.8
 Pixelator 1.0.5
 
 2019, Meteoric Swarm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Keyboard_Black_Mouse_Middle2" type="Sprite" parent="Credits/Panel"]
 position = Vector2( -68.3665, -71.2044 )
