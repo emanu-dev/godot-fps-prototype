@@ -67,7 +67,6 @@ shape = SubResource( 2 )
 transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -4.68297, 2.40852, -1.62493 )
 
 [node name="Beam8" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
 transform = Transform( 1.10668, 0, 0, 0, 1.10668, 0, 0, 0, 1.10668, -2.71645, 2.40852, 1.22199 )
 
 [node name="Scene Root" parent="Beam8" instance=ExtResource( 5 )]

@@ -342,7 +342,6 @@ active = true
 parameters/playback = SubResource( 19 )
 
 [node name="FeedbackCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="FeedbackTimer" type="Timer" parent="FeedbackCanvas"]
@@ -398,7 +397,6 @@ anims/smg = SubResource( 26 )
 anims/smg-idle = SubResource( 27 )
 
 [node name="WeaponCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -1
 
 [node name="Control" type="Control" parent="WeaponCanvas"]

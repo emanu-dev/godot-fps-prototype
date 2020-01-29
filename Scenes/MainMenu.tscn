@@ -60,7 +60,6 @@ margin_bottom = 180.0
 texture = ExtResource( 2 )
 
 [node name="MainScreen" type="CenterContainer" parent="."]
-editor/display_folded = true
 margin_right = 320.0
 margin_bottom = 180.0
 
@@ -92,7 +91,6 @@ align = 1
 valign = 1
 
 [node name="Controls" type="CenterContainer" parent="."]
-editor/display_folded = true
 visible = false
 margin_right = 320.0
 margin_bottom = 180.0

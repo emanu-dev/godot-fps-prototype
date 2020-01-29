@@ -5,9 +5,16 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
-flags_unshaded = true
-params_billboard_mode = 2
+params_blend_mode = 1
+params_billboard_mode = 1
 albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0.909804, 0.858824, 0.0509804, 1 )
+emission_energy = 1.0
+emission_operator = 1
+emission_on_uv2 = false
+transmission_enabled = true
+transmission = Color( 1, 1, 1, 1 )
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.776817
@@ -42,11 +49,15 @@ hframes = 8
 frame = 40
 
 [node name="Area" type="Area" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/loop = SubResource( 3 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384436, 0 )
+light_color = Color( 1, 0.796078, 0, 1 )
+omni_range = 1.25983
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

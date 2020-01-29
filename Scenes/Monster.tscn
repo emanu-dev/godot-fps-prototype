@@ -129,7 +129,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="SpatialMaterial" id=9]
-params_billboard_mode = 2
+params_billboard_mode = 1
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 3 )
@@ -171,7 +171,6 @@ hframes = 28
 frame = 5
 
 [node name="Area" type="Area" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 10 )

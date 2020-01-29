@@ -130,7 +130,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="SpatialMaterial" id=9]
-params_billboard_mode = 2
+params_billboard_mode = 1
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 3 )
@@ -192,6 +192,16 @@ script = ExtResource( 8 )
 [node name="SlopeRayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.830104, 0 )
 enabled = true
+
+[node name="LeftOmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605177, 0.0534023 )
+light_color = Color( 1, 1, 0.0156863, 1 )
+omni_range = 0.5
+
+[node name="RightOmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605177, -0.0484002 )
+light_color = Color( 1, 1, 0.0156863, 1 )
+omni_range = 0.5
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Signals" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Area" to="Signals" method="_on_Area_body_entered"]

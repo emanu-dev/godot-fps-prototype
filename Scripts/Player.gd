@@ -88,12 +88,13 @@ func _physics_process(delta):
 				has_contact = false
 				
 		if (has_contact and !is_on_floor()):
-			move_and_collide(Vector3(0, -1, 0))
+			if (abs(move_vec.x) + abs(move_vec.z) != 0):
+				move_and_collide(Vector3(0, -1, 0))
+				move_vec.y -= gravity * delta
 
 		move_vec = move_vec.normalized()
-		move_vec.y -= gravity * delta
 		move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
-		move_and_slide(move_vec * MOVE_SPEED * delta, Vector3(0, 1, 0), 0.15)
+		move_and_slide(move_vec * MOVE_SPEED * delta, Vector3(0, 1, 0), true)
 		
 		if Input.is_action_just_pressed("shoot") and !$Weapon.has_ammo():
 			$Weapon.no_ammo_clip()
@@ -128,5 +129,3 @@ func get_health():
 
 func get_weapon_system():
 	return $Weapon
-
-

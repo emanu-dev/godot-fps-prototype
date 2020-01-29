@@ -61,14 +61,18 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Environment" id=5]
-background_mode = 2
-ambient_light_color = Color( 0.243137, 0.243137, 0.298039, 1 )
-ambient_light_energy = 0.8
+background_energy = 0.0
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.37
+ambient_light_sky_contribution = 0.94
 fog_enabled = true
-fog_color = Color( 0, 0, 0, 0.784314 )
-fog_depth_begin = 8.0
-fog_depth_end = 25.0
-fog_height_max = -163.7
+fog_color = Color( 0, 0, 0, 1 )
+fog_depth_begin = 5.0
+fog_depth_end = 50.0
+glow_intensity = 3.36
+glow_bloom = 0.53
+adjustment_contrast = 1.26
+adjustment_saturation = 1.56
 
 [node name="World" type="Spatial"]
 
@@ -79,7 +83,6 @@ margin_right = -15.0
 margin_bottom = -15.0
 
 [node name="Enemies" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Monster" parent="Enemies" instance=ExtResource( 2 )]
 transform = Transform( -0.698774, 0, -0.715344, 0, 1, 0, 0.715344, 0, -0.698774, 36.2426, 1.71726, -53.0218 )
@@ -148,7 +151,6 @@ transform = Transform( -0.00918873, 0, -0.999958, 0, 1, 0, 0.999958, 0, -0.00918
 transform = Transform( -0.999594, 0, 0.0284823, 0, 1, 0, -0.0284823, 0, -0.999594, 8.86525, 5.22635, -33.3489 )
 
 [node name="Items" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="HealthItem" parent="Items" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33.6087, 4.78537, 0.404023 )
@@ -247,9 +249,6 @@ stream = ExtResource( 10 )
 [node name="Player" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.715442, 0, -0.698672, 0, 1, 0, 0.698672, 0, -0.715442, -22.4345, 0.922293, 49.493 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
-
 [node name="Skybox" parent="." instance=ExtResource( 13 )]
 transform = Transform( 28.428, 0, 0, 0, 28.428, 0, 0, 0, 28.428, 0, 0, 0 )
 
@@ -268,10 +267,6 @@ transform = Transform( -0.00895932, 0.854078, -0.520068, 0, 0.520089, 0.854112, 
 light_color = Color( 0.901961, 0.396078, 0.0941176, 1 )
 spot_range = 13.3
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.0593939, -0.83344, 0.549408, 0, 0.55038, 0.834914, -0.998235, -0.0495888, 0.0326892, 0, 11.3552, 8.70565 )
-light_energy = 0.2
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = 1.0
@@ -279,6 +274,9 @@ autoplay = true
 
 [node name="Map" parent="." instance=ExtResource( 15 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.184651, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 5 )
 [connection signal="body_entered" from="Items/ShotgunPickup/Area" to="Items/ShotgunPickup" method="_on_Area_body_entered"]
 [connection signal="body_entered" from="Items/SMGPickup/Area" to="Items/SMGPickup" method="_on_Area_body_entered"]
 [connection signal="ammo_update" from="Player" to="UI" method="_on_Player_ammo_update"]

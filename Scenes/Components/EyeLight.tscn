@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="EyeLight" type="Node"]
+
+[node name="LeftOmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605177, 0.0534023 )
+light_color = Color( 1, 1, 0.0156863, 1 )
+omni_range = 0.5
+
+[node name="RightOmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605177, -0.0484002 )
+light_color = Color( 1, 1, 0.0156863, 1 )
+omni_range = 0.5
