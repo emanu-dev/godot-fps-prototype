@@ -60,7 +60,6 @@ margin_bottom = 180.0
 texture = ExtResource( 2 )
 
 [node name="MainScreen" type="CenterContainer" parent="."]
-visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 
@@ -221,6 +220,7 @@ position = Vector2( 160.559, 1.67249 )
 texture = ExtResource( 16 )
 
 [node name="Credits" type="CenterContainer" parent="."]
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 rect_pivot_offset = Vector2( 31.4355, 44.0626 )
