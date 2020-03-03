@@ -19,17 +19,21 @@ func set_parent(p):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimationPlayer.play("loop")
 	translation = parent.translation
 	target = (player.translation - translation).normalized()
 	
 func _physics_process(delta):
+	
 	if target != null && player != null:
-		move_and_collide(target * MOVE_SPEED * delta)
+		move_and_collide(target * MOVE_SPEED * delta * Vector3(1,0,1))
 	else:
-		destroy()		
+		destroy()
+	if parent.dead:
+		destroy()
 
 func _process(delta):
-	$AnimationPlayer.play("loop")
+	
 	if translation.distance_to(parent.translation) > 10:
 		destroy()	
 		

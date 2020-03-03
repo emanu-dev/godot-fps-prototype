@@ -139,6 +139,7 @@ radius = 5.0
 
 [node name="ZombieRanged" type="KinematicBody"]
 script = ExtResource( 1 )
+anim_col = 28
 
 [node name="Blood" parent="." instance=ExtResource( 2 )]
 
@@ -200,6 +201,8 @@ omni_range = 0.5
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605177, -0.0484002 )
 light_color = Color( 1, 1, 0.0156863, 1 )
 omni_range = 0.5
+
+[node name="ProjectileTimer" type="Timer" parent="."]
 [connection signal="target_entered" from="." to="." method="_on_ImpTest_target_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Signals" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Area" to="Signals" method="_on_Area_body_entered"]

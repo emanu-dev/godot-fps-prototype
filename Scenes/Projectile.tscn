@@ -46,7 +46,7 @@ offset = Vector2( 0, 38.6 )
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
-frame = 40
+frame = 22
 
 [node name="Area" type="Area" parent="."]
 

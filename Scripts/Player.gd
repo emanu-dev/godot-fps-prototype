@@ -19,6 +19,8 @@ var gravity = 50
 var jump_height = 15
 var has_contact = false
 
+var god = true
+
 func _ready():
 	state_machine.start('still')
 	emit_signal("health_update", self)
@@ -105,14 +107,15 @@ func _physics_process(delta):
 					$Weapon.shoot_weapon()
 
 func hurt(dmg):
-	if health - dmg <= 0:
-		health = 0
-		kill()
-	else:
-		health -= dmg
-
-	feedback_canvas.feedback_hurt()
-	emit_signal("health_update", self)
+	if !god:
+		if health - dmg <= 0:
+			health = 0
+			kill()
+		else:
+			health -= dmg
+	
+		feedback_canvas.feedback_hurt()
+		emit_signal("health_update", self)
 
 func kill():
 	state_machine.stop()
